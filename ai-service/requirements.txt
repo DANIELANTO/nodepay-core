@@ -1,0 +1,9 @@
+fastapi==0.109.0
+uvicorn==0.27.0
+langchain==0.1.4
+langchain-openai==0.0.5
+langchain-community==0.0.16
+psycopg2-binary
+sqlalchemy==2.0.25
+python-dotenv==1.0.1
+faiss-cpu==1.13.2

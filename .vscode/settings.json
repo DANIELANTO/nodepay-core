@@ -1,0 +1,12 @@
+{
+    "prisma.pinToPrisma6": false,
+    "python.defaultInterpreterPath": "${workspaceFolder}/ai-service/venv/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/ai-service/src"
+    ],
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none",
+        "reportMissingModuleSource": "none"
+    }
+}
