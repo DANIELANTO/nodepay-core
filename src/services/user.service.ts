@@ -7,6 +7,10 @@ export class UserService {
         return await this.userRepository.createUser(email, name);
     }
 
+    public async toggleUserStatus(id: string) {
+        return await this.userRepository.toggleUserStatus(id);
+    }
+
     public async getAllUsers() {
         return await this.userRepository.getUsers();
     }
