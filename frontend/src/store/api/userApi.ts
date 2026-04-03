@@ -29,7 +29,11 @@ export const userApi = createApi({
             query: (id) => ({ url: `/users/${id}`, method: 'GET' }),
             providesTags: (_result, _error, id) => [{ type: 'User', id }],
         }),
+        toggleUserStatus: builder.mutation<User, string>({
+            query: (id) => ({ url: `/users/${id}/toggle-status`, method: 'PATCH' }),
+            invalidatesTags: ['User'],
+        }),
     }),
 });
 
-export const { useGetUsersQuery, useGetUserByIdQuery } = userApi;
+export const { useGetUsersQuery, useGetUserByIdQuery, useToggleUserStatusMutation } = userApi;
