@@ -8,7 +8,7 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
-      - DATABASE_URL=postgresql://nodepay_user:secretpassword@db:5432/nodepay_db?schema=user_mgmt
+      - DATABASE_URL=postgresql://nodepay_user:secretpassword@db:5432/nodepay_db?schema=public
     volumes:
       - .:/app
       - /app/node_modules
@@ -25,7 +25,7 @@ services:
       - ./ai-service/.env
     environment:
       - FRONTEND_URL=http://localhost:5173
-      - DATABASE_URL=postgresql://nodepay_user:secretpassword@db:5432/nodepay_db?schema=user_mgmt
+      - DATABASE_URL=postgresql://nodepay_user:secretpassword@db:5432/nodepay_db?schema=public
     volumes:
       - ./ai-service:/app
     depends_on:

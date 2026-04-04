@@ -96,7 +96,7 @@ def initialize_rag():
         toolkit = SQLDatabaseToolkit(db=db, llm=llm)
 
         # Agente recibe el LLM y las toolkits para leer la BD
-        schema_name = schema or 'user_mgmt'
+        schema_name = schema or 'public'
         custom_prefix = f"""
         You are an expert, strict Data Analyst for NodePay.
         Your ONLY job is to query the PostgreSQL database to answer questions about users, wallets, balances, and financial transactions.
