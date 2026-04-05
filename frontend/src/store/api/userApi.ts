@@ -9,6 +9,11 @@ export interface User {
     wallet?: Wallet;
 }
 
+export interface CreateUserRequest {
+    name: string;
+    email: string;
+}
+
 export interface Wallet {
     id: string;
     balance: number;
@@ -33,7 +38,11 @@ export const userApi = createApi({
             query: (id) => ({ url: `/users/${id}/toggle-status`, method: 'PATCH' }),
             invalidatesTags: ['User'],
         }),
+        createUser: builder.mutation<User, CreateUserRequest>({
+            query: (body) => ({ url: '/users', method: 'POST', data: body }),
+            invalidatesTags: ['User'],
+        }),
     }),
 });
 
-export const { useGetUsersQuery, useGetUserByIdQuery, useToggleUserStatusMutation } = userApi;
+export const { useGetUsersQuery, useGetUserByIdQuery, useToggleUserStatusMutation, useCreateUserMutation } = userApi;

@@ -9,6 +9,7 @@ import { DashboardLayout } from './layouts/DashboardLayout';
 import { UsersTable } from './components/users/UsersTable';
 import { TermsPage } from './pages/TermsPage';
 import { UserDetails } from './pages/UserDetails';
+import { CreateUser } from './pages/CreateUser';
 
 function App() {
   const { isInitialized, initKeycloak } = useAuthStore();
@@ -38,6 +39,7 @@ function App() {
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard/users" element={<UsersTable />} />
             <Route path="/dashboard/terms" element={<TermsPage />} />
+            <Route path="/dashboard/users/new" element={<CreateUser />} />
             <Route path="/dashboard/users/:id" element={<UserDetails />} />
           </Route>
         </Route>
