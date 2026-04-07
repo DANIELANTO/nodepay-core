@@ -10,7 +10,7 @@ export const DashboardLayout = () => {
     const [isAIOpen, setIsAIOpen] = useState(false);
 
     return (
-        <div className="relative min-h-screen bg-slate-50 p-4 sm:p-8 overflow-hidden">
+        <div className="relative min-h-screen bg-gradient-to-b from-green-900 to-black p-4 sm:p-8 overflow-hidden">
             <div className="mx-auto max-w-6xl">
 
                 {/* Header Global del Dashboard */}
@@ -24,8 +24,8 @@ export const DashboardLayout = () => {
                             <Link
                                 to="/dashboard/users"
                                 className={`pb-2 text-sm font-medium transition-colors border-b-2 ${location.pathname.includes('/users')
-                                        ? 'border-blue-600 text-blue-600'
-                                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                    ? 'border-blue-600 text-blue-600'
+                                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                                     }`}
                             >
                                 Lista de Usuarios
@@ -33,8 +33,8 @@ export const DashboardLayout = () => {
                             <Link
                                 to="/dashboard/terms"
                                 className={`pb-2 text-sm font-medium transition-colors border-b-2 ${location.pathname.includes('/terms')
-                                        ? 'border-blue-600 text-blue-600'
-                                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                    ? 'border-blue-600 text-blue-600'
+                                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                                     }`}
                             >
                                 Términos y Condiciones
