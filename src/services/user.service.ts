@@ -18,4 +18,8 @@ export class UserService {
     public async getUserById(id: string) {
         return await this.userRepository.getUserById(id);
     }
+
+    public async editUser(id: string, name: string) {
+        return await this.userRepository.editUser(id, name);
+    }
 }

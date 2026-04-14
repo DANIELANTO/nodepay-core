@@ -44,7 +44,7 @@ export const DashboardLayout = () => {
 
                     <button
                         onClick={logout}
-                        className="mt-4 sm:mt-0 w-full sm:w-auto rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600"
+                        className="mt-4 sm:mt-0 w-full sm:w-auto rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600 border-2 border-gray-500/20 hover:cursor-pointer"
                     >
                         Cerrar Sesión
                     </button>

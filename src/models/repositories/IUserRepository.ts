@@ -3,4 +3,5 @@ export interface IUserRepository {
     toggleUserStatus(id: string): Promise<any>;
     getUsers(): Promise<any>;
     getUserById(id: string): Promise<any>;
+    editUser(id: string, name: string): Promise<any>;
 }

@@ -63,3 +63,20 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+export const editUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const id = req.params.id as string;
+        const { name } = req.body;
+        if (!id || !name) {
+            res.status(400).json({ error: 'User ID and name are required' });
+            return;
+        }
+
+        const updatedUser = await userService.editUser(id, name);
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};

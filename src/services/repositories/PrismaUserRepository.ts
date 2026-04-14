@@ -26,6 +26,21 @@ export class PrismaUserRepository implements IUserRepository {
         });
     }
 
+    async editUser(id: string, name: string) {
+        const user = await this.prisma.user.findUnique({
+            where: { id },
+            include: { wallet: true }
+        });
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return await this.prisma.user.update({
+            where: { id },
+            data: { name },
+            include: { wallet: true }
+        });
+    }
+
     async getUsers() {
         return await this.prisma.user.findMany({
             include: { wallet: true }
