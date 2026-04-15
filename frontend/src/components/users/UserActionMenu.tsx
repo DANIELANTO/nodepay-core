@@ -5,7 +5,7 @@ import type { User } from '../../store/api/userApi';
 
 interface UserActionMenuProps {
     user: User;
-    /** Called when the user selects "Habilitar / Deshabilitar" */
+    /** Called when the user selects "Enable / Disable" */
     onRequestToggle: (user: Pick<User, 'id' | 'isActive' | 'name'>) => void;
 }
 
@@ -25,7 +25,7 @@ export const UserActionMenu = ({ user, onRequestToggle }: UserActionMenuProps) =
         <div ref={ref} className="relative">
             <button
                 id={`menu-btn-${user.id}`}
-                aria-label="Abrir menú de acciones"
+                aria-label="Open action menu"
                 aria-expanded={open}
                 onClick={() => setOpen((v) => !v)}
                 className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-700 focus:outline-none hover:cursor-pointer"
@@ -39,7 +39,7 @@ export const UserActionMenu = ({ user, onRequestToggle }: UserActionMenuProps) =
 
             {open && (
                 <div className="fixed z-50 mt-1 w-52 rounded-xl border border-gray-100 bg-white py-1 shadow-xl">
-                    {/* Ver Wallet */}
+                    {/* View Wallet */}
                     <Link
                         to={`/dashboard/users/${user.id}`}
                         onClick={() => setOpen(false)}
@@ -49,10 +49,10 @@ export const UserActionMenu = ({ user, onRequestToggle }: UserActionMenuProps) =
                             <rect x="2" y="5" width="20" height="14" rx="2" />
                             <path d="M16 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                         </svg>
-                        Ver Wallet
+                        View Wallet
                     </Link>
 
-                    {/* Editar */}
+                    {/* Edit */}
                     <Link
                         to={`/dashboard/users/${user.id}/edit`}
                         state={{ user }}
@@ -63,12 +63,12 @@ export const UserActionMenu = ({ user, onRequestToggle }: UserActionMenuProps) =
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                         </svg>
-                        Editar
+                        Edit
                     </Link>
 
                     <div className="my-1 border-t border-gray-100" />
 
-                    {/* Habilitar / Deshabilitar */}
+                    {/* Enable / Disable */}
                     <button
                         onClick={() => {
                             onRequestToggle({ id: user.id, isActive: user.isActive, name: user.name });
@@ -84,7 +84,7 @@ export const UserActionMenu = ({ user, onRequestToggle }: UserActionMenuProps) =
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             )}
                         </svg>
-                        {user.isActive ? 'Deshabilitar' : 'Habilitar Usuario'}
+                        {user.isActive ? 'Disable' : 'Enable'}
                     </button>
                 </div>
             )}

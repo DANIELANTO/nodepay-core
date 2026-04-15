@@ -17,10 +17,10 @@ export const UsersDesktopTable = ({ users, onRequestToggle }: UsersDesktopTableP
                 <thead>
                     <tr className="text-xs font-semibold uppercase tracking-wider text-green-800">
                         <th className="px-6 py-4 text-left">ID</th>
-                        <th className="px-6 py-4 text-left">Usuario</th>
+                        <th className="px-6 py-4 text-left">User</th>
                         <th className="px-6 py-4 text-left">Email</th>
-                        <th className="px-6 py-4 text-left">Estado</th>
-                        <th className="px-6 py-4 text-right">Acciones</th>
+                        <th className="px-6 py-4 text-left">Status</th>
+                        <th className="px-6 py-4 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
@@ -38,7 +38,7 @@ export const UsersDesktopTable = ({ users, onRequestToggle }: UsersDesktopTableP
                             <td className="px-6 py-4 text-gray-700">{user.email}</td>
                             <td className="px-6 py-4">
                                 <StatusBadge
-                                    label={user.isActive ? 'ACTIVO' : 'INACTIVO'}
+                                    label={user.isActive ? 'ACTIVE' : 'INACTIVE'}
                                     variant={user.isActive ? 'success' : 'danger'}
                                 />
                             </td>

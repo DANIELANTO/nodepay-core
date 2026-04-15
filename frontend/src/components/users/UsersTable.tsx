@@ -17,20 +17,20 @@ const LoadingSpinner = () => (
 /* ─── Error state ───────────────────────────────────────── */
 const ErrorMessage = () => (
     <div className="rounded-xl bg-red-50 p-5 text-red-700">
-        <p className="font-semibold">Error al cargar los usuarios.</p>
-        <p className="text-sm">Verifica que el User Management Service esté corriendo.</p>
+        <p className="font-semibold">Error loading users.</p>
+        <p className="text-sm">Verify that the User Management Service is running.</p>
     </div>
 );
 
 /* ─── Empty state ───────────────────────────────────────── */
 const EmptyState = () => (
     <div className="flex flex-col items-center gap-4 py-16">
-        <p className="text-gray-400">No hay usuarios registrados.</p>
+        <p className="text-gray-400">No users registered.</p>
         <Link
             to="/dashboard/users/new"
             className="rounded-lg bg-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-700"
         >
-            + Crear Nuevo Usuario
+            + Create New User
         </Link>
     </div>
 );
@@ -68,7 +68,7 @@ export const UsersTable = () => {
         <>
             {/* ── Header ─────────────────────────────────── */}
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-xl font-bold text-white">Usuarios</h2>
+                <h2 className="text-xl font-bold text-white">Users</h2>
                 <Link
                     to="/dashboard/users/new"
                     id="create-user-btn"
@@ -77,7 +77,7 @@ export const UsersTable = () => {
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                         <path d="M12 4v16m8-8H4" />
                     </svg>
-                    Crear Nuevo Usuario
+                    Create New User
                 </Link>
             </div>
 
@@ -95,7 +95,7 @@ export const UsersTable = () => {
                     type="search"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Buscar por nombre o email..."
+                    placeholder="Search by name or email..."
                     className="w-full rounded-xl border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 shadow-sm placeholder:text-gray-600 focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-100"
                 />
             </div>
@@ -113,15 +113,15 @@ export const UsersTable = () => {
             {/* ── Confirm Modal ───────────────────────────── */}
             <ConfirmModal
                 open={userToToggle !== null}
-                title="Confirmar Acción"
+                title="Confirm Action"
                 description={
                     <>
-                        ¿Estás seguro que deseas{' '}
-                        <strong>{userToToggle?.isActive ? 'deshabilitar' : 'habilitar'}</strong>{' '}
-                        a {userToToggle?.name}?
+                        Are you sure you want to{' '}
+                        <strong>{userToToggle?.isActive ? 'disable' : 'enable'}</strong>{' '}
+                        user {userToToggle?.name}?
                     </>
                 }
-                confirmLabel={userToToggle?.isActive ? 'Deshabilitar' : 'Habilitar'}
+                confirmLabel={userToToggle?.isActive ? 'Disable' : 'Enable'}
                 variant={userToToggle?.isActive ? 'danger' : 'success'}
                 onConfirm={handleConfirm}
                 onCancel={() => setUserToToggle(null)}

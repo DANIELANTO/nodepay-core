@@ -12,7 +12,7 @@ interface ConfirmModalProps {
     description: ReactNode;
     /** Label for the confirm action button */
     confirmLabel: string;
-    /** Label for the cancel button (default: "Cancelar") */
+    /** Label for the cancel button (default: "Cancel") */
     cancelLabel?: string;
     /** Visual style of the confirm button */
     variant?: ConfirmVariant;
@@ -25,7 +25,7 @@ interface ConfirmModalProps {
 }
 
 const confirmBtnClasses: Record<ConfirmVariant, string> = {
-    danger:  'bg-red-600 hover:bg-red-700 disabled:bg-red-300',
+    danger: 'bg-red-600 hover:bg-red-700 disabled:bg-red-300',
     success: 'bg-green-600 hover:bg-green-700 disabled:bg-green-300',
     warning: 'bg-yellow-500 hover:bg-yellow-600 disabled:bg-yellow-300',
 };
@@ -35,7 +35,7 @@ export const ConfirmModal = ({
     title,
     description,
     confirmLabel,
-    cancelLabel = 'Cancelar',
+    cancelLabel = 'Cancel',
     variant = 'danger',
     onConfirm,
     onCancel,

@@ -34,15 +34,15 @@ export const UserDetails = () => {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {/* Tarjeta de Perfil */}
                 <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">Perfil de Usuario</h2>
+                    <h2 className="text-lg font-bold text-gray-900 mb-4">User Profile</h2>
                     <div className="space-y-3 text-sm text-gray-600">
                         <p><strong className="text-gray-900">ID:</strong> <span className="font-mono text-xs">{user.id.substring(0, 8)}...</span></p>
-                        <p><strong className="text-gray-900">Nombre:</strong> {user.name}</p>
+                        <p><strong className="text-gray-900">Name:</strong> {user.name}</p>
                         <p><strong className="text-gray-900">Email:</strong> {user.email}</p>
                         <p>
-                            <strong className="text-gray-900">Estado:</strong>{' '}
+                            <strong className="text-gray-900">Status:</strong>{' '}
                             <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                                {user.isActive ? 'Activo' : 'Inactivo'}
+                                {user.isActive ? 'Active' : 'Inactive'}
                             </span>
                         </p>
                     </div>

@@ -16,10 +16,9 @@ export const DashboardLayout = () => {
                 {/* Header Global del Dashboard */}
                 <div className="mb-4 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between rounded-xl bg-white p-4 sm:p-6 shadow-sm border border-gray-100">
                     <div className="w-full sm:w-auto">
-                        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Panel de Administración</h1>
-                        <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-0 sm:pb-4">Administra el acceso y visualiza las normativas de NodePay.</p>
+                        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Administration Panel</h1>
+                        <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-0 sm:pb-4">Manage access and view NodePay regulations.</p>
 
-                        {/* Navegación de Pestañas */}
                         <div className="flex space-x-4 sm:space-x-6 border-b border-gray-200 overflow-x-auto whitespace-nowrap pb-1">
                             <Link
                                 to="/dashboard/users"
@@ -28,7 +27,7 @@ export const DashboardLayout = () => {
                                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                                     }`}
                             >
-                                Lista de Usuarios
+                                User List
                             </Link>
                             <Link
                                 to="/dashboard/terms"
@@ -37,7 +36,7 @@ export const DashboardLayout = () => {
                                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                                     }`}
                             >
-                                Términos y Condiciones
+                                Terms and Conditions
                             </Link>
                         </div>
                     </div>
@@ -46,11 +45,10 @@ export const DashboardLayout = () => {
                         onClick={logout}
                         className="mt-4 sm:mt-0 w-full sm:w-auto rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600 border-2 border-gray-500/20 hover:cursor-pointer"
                     >
-                        Cerrar Sesión
+                        Logout
                     </button>
                 </div>
 
-                {/* Contenedor Dinámico: Aquí se inyectan las páginas */}
                 <div className="mb-6">
                     <Outlet />
                 </div>

@@ -18,26 +18,26 @@ export const WalletCard = ({ wallet }: WalletCardProps) => {
         try {
             if (isSimulating) {
                 await stopSim(wallet.id).unwrap();
-                toast('Simulación detenida', { icon: '🛑' });
+                toast('Simulation stopped', { icon: '🛑' });
             } else {
                 await startSim(wallet.id).unwrap();
-                toast.success('Simulación iniciada. ¡Observa el balance!');
+                toast.success('Simulation started. Watch the balance!');
             }
             setIsSimulating(!isSimulating);
         } catch (error) {
-            toast.error('Error al cambiar el estado de la simulación');
+            toast.error('Error when changing simulation status');
         }
     };
 
     if (!wallet) {
-        return <div className="rounded-xl bg-slate-100 p-6">El usuario no tiene una wallet asignada.</div>;
+        return <div className="rounded-xl bg-slate-100 p-6">The user does not have an assigned wallet.</div>;
     }
 
     return (
         <div className="rounded-xl bg-linear-to-br from-slate-800 to-slate-900 p-6 shadow-lg text-white relative overflow-hidden flex flex-col justify-between">
             <div className="relative z-10">
                 <div className="flex justify-between items-start mb-1">
-                    <h2 className="text-sm font-medium text-slate-300">Balance Actual</h2>
+                    <h2 className="text-sm font-medium text-slate-300">Current Balance</h2>
 
                     {/* Toggle Switch para el Simulador */}
                     <button
@@ -65,7 +65,7 @@ export const WalletCard = ({ wallet }: WalletCardProps) => {
                     {isSimulating && (
                         <span className="flex items-center text-xs text-emerald-400 font-medium">
                             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span>
-                            En vivo
+                            Live
                         </span>
                     )}
                 </div>

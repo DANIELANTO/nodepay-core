@@ -20,18 +20,18 @@ export const CreateUser = () => {
 
     return (
         <div className="mx-auto max-w-2xl overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="mb-6 text-2xl font-bold text-gray-900">Crear Nuevo Usuario</h2>
-            
+            <h2 className="mb-6 text-2xl font-bold text-gray-900">Create User</h2>
+
             {!!error && (
                 <div className="mb-4 rounded-md bg-red-50 p-4 text-red-700">
-                    <p className="font-semibold">Error al crear el usuario. {(error as any)?.data?.message || ''}</p>
+                    <p className="font-semibold">Error creating user. {(error as any)?.data?.message || ''}</p>
                 </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        Nombre Completo
+                        Full Name
                     </label>
                     <input
                         type="text"
@@ -45,7 +45,7 @@ export const CreateUser = () => {
 
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Correo Electrónico
+                        Email
                     </label>
                     <input
                         type="email"
@@ -63,14 +63,14 @@ export const CreateUser = () => {
                         onClick={() => navigate('/dashboard/users')}
                         className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                        Cancelar
+                        Cancel
                     </button>
                     <button
                         type="submit"
                         disabled={isLoading}
                         className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-400"
                     >
-                        {isLoading ? 'Creando...' : 'Crear Usuario'}
+                        {isLoading ? 'Creating...' : 'Create User'}
                     </button>
                 </div>
             </form>
