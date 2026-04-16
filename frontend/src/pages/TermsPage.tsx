@@ -18,19 +18,19 @@ export const TermsPage = () => {
                     <div className="flex items-center gap-3 mb-3">
                         <span className="text-2xl">🇸🇻</span>
                         <span className="text-blue-200 text-sm font-medium tracking-widest uppercase">
-                            NodePay · República de El Salvador
+                            NodePay · Republic of El Salvador
                         </span>
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Términos y Condiciones</h1>
+                    <h1 className="text-3xl font-bold text-white mb-2">Terms and Conditions</h1>
                     <p className="text-blue-100 text-sm max-w-2xl">
-                        Documento legal vinculante que regula el uso de los servicios financieros digitales de NodePay,
-                        elaborado conforme a las leyes de la República de El Salvador.
+                        Binding legal document regulating the use of NodePay's digital financial services,
+                        drafted in accordance with the laws of the Republic of El Salvador.
                     </p>
                     <div className="mt-5 flex flex-wrap gap-3">
                         {[
-                            { icon: "📅", label: `Vigente desde ${TERMS_METADATA.lastUpdated}` },
-                            { icon: "⚖️", label: "Jurisdicción: El Salvador" },
-                            { icon: "₿", label: "Regulado bajo Ley Bitcoin" },
+                            { icon: "📅", label: `Effective since ${TERMS_METADATA.lastUpdated}` },
+                            { icon: "⚖️", label: "Jurisdiction: El Salvador" },
+                            { icon: "₿", label: "Regulated under Bitcoin Law" },
                         ].map((badge) => (
                             <span
                                 key={badge.label}
@@ -50,17 +50,17 @@ export const TermsPage = () => {
                 {/* Intro Box */}
                 <div className="mb-8 rounded-xl border border-blue-100 bg-blue-50 p-5">
                     <p className="text-blue-800 text-sm leading-relaxed">
-                        <strong>Importante:</strong> Bienvenido a NodePay. Al utilizar nuestros servicios financieros digitales,
-                        usted acepta estar sujeto a los siguientes Términos y Condiciones en su totalidad. Le recomendamos
-                        leer este documento con detenimiento. Si tiene dudas, puede consultar a nuestro asistente de IA
-                        en el panel lateral o contactar a nuestro equipo de soporte.
+                        <strong>Important:</strong> Welcome to NodePay. By using our digital financial services,
+                        you agree to be bound by the following Terms and Conditions in their entirety. We recommend
+                        that you read this document carefully. If you have any questions, you can consult our AI assistant
+                        in the sidebar or contact our support team.
                     </p>
                 </div>
 
                 {/* Table of Contents */}
                 <div className="mb-6 sm:mb-8 rounded-xl border border-gray-200 bg-white p-4 sm:p-6 shadow-sm">
                     <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
-                        Índice de Contenidos
+                        Table of Contents
                     </h2>
                     <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
                         {TERMS_SECTIONS.map((section) => (
@@ -117,18 +117,18 @@ export const TermsPage = () => {
                 >
                     <span className="text-2xl">🫶</span>
                     <p className="mt-2 text-sm text-blue-100">
-                        NodePay es orgullosamente salvadoreño. Construido con el calor humano del Pulgarcito de América,
-                        para conectar a nuestra gente con el futuro financiero digital.
+                        NodePay is proudly Salvadoran. Built with the human warmth of the "Pulgarcito de América"
+                        to connect our people with the digital financial future.
                     </p>
                     <p className="mt-1 text-xs text-blue-300">
-                        <em>"Dios, Unión, Libertad"</em> — y también, pagos sin fricción.
+                        <em>"Dios, Unión, Libertad"</em> — and also, frictionless payments.
                     </p>
                 </div>
 
                 {/* Footer Meta */}
                 <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 px-1">
                     <p className="text-xs text-gray-400">
-                        Última actualización: <strong>{TERMS_METADATA.lastUpdated}</strong> · Versión {TERMS_METADATA.version}
+                        Last updated: <strong>{TERMS_METADATA.lastUpdated}</strong> · Version {TERMS_METADATA.version}
                     </p>
                     <p className="text-xs text-gray-400">
                         {TERMS_METADATA.company} · {TERMS_METADATA.location} · NIT: {TERMS_METADATA.nit}

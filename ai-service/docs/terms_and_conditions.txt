@@ -1,108 +1,108 @@
-TÉRMINOS Y CONDICIONES DE NODEPAY
-Versión 2.0 — Marzo 2026
+NODEPAY TERMS AND CONDITIONS
+Version 2.0 — March 2026
 NodePay S.A. de C.V. · San Salvador, El Salvador · NIT: 0614-XXXXXX-XXX-X
 
 ================================================================================
 
-1. ACEPTACIÓN DE LOS TÉRMINOS
+1. ACCEPTANCE OF TERMS
 
-Al registrarse en NodePay y utilizar cualquiera de nuestros servicios financieros digitales, usted (en adelante "el Usuario") acepta de forma expresa, voluntaria e irrevocable los presentes Términos y Condiciones, así como nuestra Política de Privacidad y cualquier política adicional incorporada por referencia. Si no está de acuerdo con alguna de estas disposiciones, le solicitamos abstenerse de utilizar la plataforma.
+By registering with NodePay and using any of our digital financial services, you (hereinafter "the User") expressly, voluntarily, and irrevocably accept these Terms and Conditions, as well as our Privacy Policy and any additional policies incorporated by reference. If you do not agree with any of these provisions, we ask you to refrain from using the platform.
 
-NodePay opera bajo las leyes y regulaciones de la República de El Salvador, incluyendo la Ley del Sistema Financiero para el Fomento de la Innovación (Ley Fintech), la Ley Bitcoin (Decreto Legislativo N.º 57) y las directrices del Banco Central de Reserva (BCR). El incumplimiento de estas normas podrá derivar en la suspensión inmediata de la cuenta.
+NodePay operates under the laws and regulations of the Republic of El Salvador, including the Law of the Financial System for the Promotion of Innovation (Fintech Law), the Bitcoin Law (Legislative Decree No. 57), and the guidelines of the Central Reserve Bank (BCR). Failure to comply with these rules may result in immediate account suspension.
 
-Estos términos constituyen un acuerdo legalmente vinculante entre el Usuario y NodePay S.A. de C.V., sociedad constituida conforme a las leyes salvadoreñas, con domicilio en San Salvador, El Salvador.
-
-================================================================================
-
-2. BILLETERA DIGITAL (WALLET) Y MULTIDIVISA
-
-Cada usuario registrado dispondrá de una billetera digital multidivisa que permite almacenar, enviar y recibir fondos en USD, BTC (Bitcoin) y otras divisas habilitadas. Los fondos depositados no generan intereses salvo que NodePay lance productos de ahorro específicos comunicados por los canales oficiales.
-
-NodePay soporta plenamente las transacciones en la red Bitcoin Lightning, en cumplimiento del Decreto Legislativo N.º 57, que otorga al Bitcoin estatus de moneda de curso legal en El Salvador. Los usuarios pueden pagar con Bitcoin en cualquier comercio afiliado, desde las pupuserías del mercado central hasta los negocios tech de la Zona Rosa.
-
-Las billeteras están protegidas mediante autenticación de dos factores (2FA). NodePay no se responsabiliza por pérdidas derivadas del acceso no autorizado ocasionado por negligencia del Usuario en el resguardo de sus credenciales, tal como dejar la sesión abierta en una computadora del Ciber Café del barrio.
+These terms constitute a legally binding agreement between the User and NodePay S.A. de C.V., a company incorporated under Salvadoran laws, domiciled in San Salvador, El Salvador.
 
 ================================================================================
 
-3. COMISIONES Y TARIFAS
+2. DIGITAL WALLET AND MULTICURRENCY
 
-NodePay aplica una comisión plana del 2.5% sobre todas las transferencias internacionales. Las transferencias locales dentro del territorio salvadoreño son completamente gratuitas, en reconocimiento al espíritu comunitario y la solidaridad que caracteriza al pueblo salvadoreño.
+Each registered user will have a multicurrency digital wallet that allows storing, sending, and receiving funds in USD, BTC (Bitcoin), and other enabled currencies. Deposited funds do not generate interest unless NodePay launches specific savings products communicated through official channels.
 
-Las transacciones en Bitcoin a través de la red Lightning no incurren en comisión adicional de NodePay, aunque pueden aplicar fees de red de terceros. Los pagos en establecimientos de pupusas registrados como comercios NodePay están exentos de comisión durante los primeros seis meses de operación, como parte del programa "NodePay Apoya el Patrimonio Gastronómico Nacional".
+NodePay fully supports transactions on the Bitcoin Lightning Network, in compliance with Legislative Decree No. 57, which grants Bitcoin legal tender status in El Salvador. Users can pay with Bitcoin at any affiliated business, from pupuserías in the central market to tech businesses in the Zona Rosa.
 
-NodePay se reserva el derecho de modificar su estructura de tarifas con un aviso previo de al menos 30 días calendario, notificado a través de correo electrónico y mediante banner en la aplicación.
-
-================================================================================
-
-4. LÍMITES DE RETIRO Y TRANSACCIONES
-
-El límite de retiro estándar es de $1,000 USD diarios. Los usuarios con verificación de identidad completa (KYC Nivel 2) pueden solicitar un aumento a $5,000 USD diarios. Para incrementos superiores, se requiere justificación documental de origen de fondos, conforme a la normativa de prevención de lavado de activos vigente en El Salvador.
-
-NodePay aplica una política de "Flexibilidad de Fines de Semana": los días sábado y domingo, el límite de transferencias entre usuarios registrados se amplía un 20% adicional, especialmente útil para las transacciones del tianguis del fin de semana o las ventas de artesanías en el Parque Libertad.
-
-Los límites de retiro se restablecen a las 00:00 horas (hora de El Salvador, UTC-6). NodePay no es responsable si el usuario realiza un retiro durante ventanas de mantenimiento programado, las cuales se anuncian con antelación por los canales oficiales.
+Wallets are protected by two-factor authentication (2FA). NodePay is not responsible for losses resulting from unauthorized access caused by the User's negligence in safeguarding their credentials, such as leaving a session open on a computer at the local Cyber Cafe.
 
 ================================================================================
 
-5. SOPORTE AL CLIENTE Y TIEMPO DE RESPUESTA
+3. COMMISSIONS AND FEES
 
-El equipo de atención al cliente opera de lunes a viernes de 8:00 a 18:00 horas y los sábados de 8:00 a 12:00 horas (hora de El Salvador). Todos los agentes son profesionales capacitados con altos estándares de calidad y calidez en el servicio.
+NodePay applies a flat 2.5% commission on all international transfers. Local transfers within the Salvadoran territory are completely free, in recognition of the community spirit and solidarity that characterizes the Salvadoran people.
 
-El tiempo de respuesta estándar para tickets de soporte es de 24 horas hábiles. En circunstancias de alta demanda, como los días posteriores al pago de quincenas o durante el Campeonato Nacional de Fútbol, los tiempos podrían extenderse hasta 36 horas hábiles.
+Bitcoin transactions through the Lightning Network do not incur an additional NodePay commission, although third-party network fees may apply. Payments at pupusa establishments registered as NodePay merchants are exempt from commission during their first six months of operation, as part of the "NodePay Supports the National Gastronomic Heritage" program.
 
-Para emergencias relacionadas con fraude o acceso no autorizado, NodePay habilita una línea de atención prioritaria disponible las 24 horas. Los usuarios afectados recibirán respuesta en un máximo de 4 horas, sin excepción, incluso si el incidente ocurre durante el Desfile de Bandas del 15 de Septiembre.
-
-================================================================================
-
-6. PREVENCIÓN DE LAVADO DE ACTIVOS (AML) Y CUMPLIMIENTO
-
-NodePay cumple estrictamente con la Ley Contra el Lavado de Dinero y de Activos de El Salvador y sus reformas, así como con los estándares internacionales del GAFI (Grupo de Acción Financiera Internacional). Toda transacción inusual o sospechosa será reportada a la Unidad de Investigación Financiera (UIF) de la Fiscalía General de la República.
-
-NodePay se reserva el derecho de congelar, bloquear o cerrar cuentas sin previo aviso cuando se detecten patrones de actividad fraudulenta, suplantación de identidad, financiamiento de actividades ilícitas o cualquier acción que contravenga la legislación salvadoreña o internacional.
-
-El Usuario declara que los fondos administrados a través de NodePay tienen origen lícito. Cualquier uso de la plataforma para actividades contrarias a la ley, incluyendo evasión fiscal, será denunciado ante las autoridades competentes. NodePay cooperará plenamente con el Ministerio de Hacienda y el BCR en toda investigación que así lo requiera.
+NodePay reserves the right to modify its fee structure with at least 30 calendar days' prior notice, notified via email and through a banner in the application.
 
 ================================================================================
 
-7. USO ACEPTABLE DE LA PLATAFORMA
+4. WITHDRAWAL AND TRANSACTION LIMITS
 
-El Usuario se compromete a utilizar NodePay exclusivamente para fines lícitos, incluyendo pagos de bienes y servicios, transferencias entre personas físicas y jurídicas, y operaciones de comercio electrónico. Queda expresamente prohibido el uso de la plataforma para evadir controles cambiarios, financiar actividades terroristas o realizar transacciones asociadas a organizaciones criminales.
+The standard withdrawal limit is $1,000 USD per day. Users with full identity verification (KYC Level 2) can request an increase to $5,000 USD per day. For higher increases, documentary justification of the origin of funds is required, in accordance with current anti-money laundering regulations in El Salvador.
 
-NodePay promueve activamente la economía local salvadoreña. Como parte de su misión, NodePay puede destacar, a través de notificaciones no invasivas, comercios y emprendimientos nacionales, desde las artesanas de Ilobasco hasta los caficultores de las laderas del Volcán Santa Ana, como parte del programa de impulso al ecosistema empresarial salvadoreño.
+NodePay applies a "Weekend Flexibility" policy: on Saturdays and Sundays, the transfer limit between registered users is increased by an additional 20%, especially useful for weekend flea market transactions or handicraft sales in Parque Libertad.
 
-Queda prohibido el uso de la plataforma para transacciones relacionadas con apuestas ilegales, venta de sustancias controladas o cualquier actividad regulada que el Usuario no haya acreditado ante NodePay. El incumplimiento de esta cláusula resultará en la suspensión permanente de la cuenta y la denuncia correspondiente ante la Policía Nacional Civil (PNC).
-
-================================================================================
-
-8. PRIVACIDAD Y PROTECCIÓN DE DATOS
-
-NodePay recopila, procesa y almacena datos personales conforme a lo establecido en la Ley de Protección de Datos Personales de El Salvador y las mejores prácticas internacionales en materia de ciberseguridad. Los datos del Usuario nunca serán vendidos a terceros con fines comerciales sin su consentimiento expreso.
-
-La información de geolocalización puede ser utilizada para validar transacciones y personalizar la experiencia del Usuario, por ejemplo, para sugerirle los mejores puntos de pago NodePay cuando se encuentre en el Parque Infantil o paseando por el Centro Histórico de Santa Ana.
-
-El Usuario tiene derecho a solicitar la rectificación, cancelación u oposición al tratamiento de sus datos personales en cualquier momento, enviando una solicitud escrita al Departamento de Privacidad de NodePay. Se garantiza respuesta en un plazo no mayor a 15 días hábiles.
+Withdrawal limits reset at 00:00 hours (El Salvador time, UTC-6). NodePay is not responsible if the user makes a withdrawal during scheduled maintenance windows, which are announced in advance through official channels.
 
 ================================================================================
 
-9. RESOLUCIÓN DE DISPUTAS
+5. CUSTOMER SUPPORT AND RESPONSE TIME
 
-Cualquier cargo no reconocido debe ser reportado dentro de un plazo de 72 horas hábiles desde su aparición en el estado de cuenta del Usuario. NodePay iniciará una investigación interna que concluirá en un plazo máximo de 10 días hábiles, durante los cuales el monto disputado podrá ser bloqueado preventivamente.
+The customer support team operates from Monday to Friday from 8:00 to 18:00 and Saturdays from 8:00 to 12:00 (El Salvador time). All agents are trained professionals with high standards of quality and warmth in service.
 
-En caso de controversias no resueltas internamente, las partes acuerdan someter la disputa a la Defensoría del Consumidor de El Salvador como primera instancia de mediación, antes de acudir a la vía judicial. Este proceso refleja el compromiso de NodePay con la resolución pacífica de conflictos, valores arraigados en la cultura salvadoreña desde los Acuerdos de Paz de 1992.
+The standard response time for support tickets is 24 business hours. In times of high demand, such as the days following payday or during the National Football Championship, response times may extend up to 36 business hours.
 
-Para disputas de carácter técnico-financiero que superen los $10,000 USD, se podrá solicitar un proceso de arbitraje ante el Centro de Arbitraje y Mediación de la Cámara de Comercio e Industria de El Salvador (CCIES), cuyo laudo tendrá carácter vinculante para ambas partes.
-
-================================================================================
-
-10. MODIFICACIONES A LOS TÉRMINOS
-
-NodePay se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento, con notificación previa al Usuario por correo electrónico y aviso dentro de la aplicación con al menos 15 días de anticipación. El uso continuado de la plataforma tras la fecha de vigencia de las modificaciones constituirá aceptación tácita de las mismas.
-
-Las versiones históricas de los Términos y Condiciones estarán disponibles en el sitio web de NodePay para consulta, preservadas con el mismo cuidado con que El Salvador preserva su identidad cultural: con orgullo, transparencia y respeto por el pasado.
-
-NodePay celebra la cultura salvadoreña en cada aspecto de su operación. Así como la pupusa es reconocida por ley como el plato nacional el segundo domingo de noviembre, NodePay se compromete a reconocer y respetar las tradiciones de sus usuarios en cada decisión de producto y servicio.
+For emergencies related to fraud or unauthorized access, NodePay provides a priority support line available 24 hours a day. Affected users will receive a response in a maximum of 4 hours, without exception, even if the incident occurs during the September 15th Band Parade.
 
 ================================================================================
 
-NodePay es orgullosamente salvadoreño. Construido con el calor humano del Pulgarcito de América, para conectar a nuestra gente con el futuro financiero digital.
-"Dios, Unión, Libertad" — y también, pagos sin fricción.
+6. ANTI-MONEY LAUNDERING (AML) AND COMPLIANCE
+
+NodePay strictly complies with the Anti-Money Laundering and Asset Law of El Salvador and its amendments, as well as with the international standards of the FATF (Financial Action Task Force). Any unusual or suspicious transaction will be reported to the Financial Investigation Unit (UIF) of the Attorney General of the Republic.
+
+NodePay reserves the right to freeze, block, or close accounts without prior notice when patterns of fraudulent activity, identity theft, financing of illicit activities, or any action that contravenes Salvadoran or international law are detected.
+
+The User declares that the funds managed through NodePay have a lawful origin. Any use of the platform for unlawful activities, including tax evasion, will be reported to the relevant authorities. NodePay will fully cooperate with the Ministry of Finance and the BCR in any investigation that requires it.
+
+================================================================================
+
+7. ACCEPTABLE USE OF THE PLATFORM
+
+The User agrees to use NodePay exclusively for lawful purposes, including payments for goods and services, transfers between individuals and legal entities, and e-commerce operations. The use of the platform to evade exchange controls, finance terrorist activities, or conduct transactions associated with criminal organizations is expressly prohibited.
+
+NodePay actively promotes the local Salvadoran economy. As part of its mission, NodePay may highlight, through non-invasive notifications, national businesses and ventures, from the artisans of Ilobasco to the coffee growers on the slopes of the Santa Ana Volcano, as part of the program to boost the Salvadoran business ecosystem.
+
+The use of the platform for transactions related to illegal betting, sale of controlled substances, or any regulated activity that the User has not accredited with NodePay is prohibited. Violation of this clause will result in permanent account suspension and the corresponding report to the National Civil Police (PNC).
+
+================================================================================
+
+8. PRIVACY AND DATA PROTECTION
+
+NodePay collects, processes, and stores personal data in accordance with the provisions of the Personal Data Protection Law of El Salvador and international best practices in cybersecurity. The User's data will never be sold to third parties for commercial purposes without their express consent.
+
+Geolocation information may be used to validate transactions and personalize the User's experience, for example, to suggest the best NodePay payment points when in the Parque Infantil or walking through the Historic Center of Santa Ana.
+
+The User has the right to request the rectification, cancellation, or opposition to the processing of their personal data at any time by sending a written request to the NodePay Privacy Department. A response is guaranteed within a period not exceeding 15 business days.
+
+================================================================================
+
+9. DISPUTE RESOLUTION
+
+Any unrecognized charge must be reported within 72 business hours from its appearance on the User's account statement. NodePay will initiate an internal investigation that will conclude within a maximum of 10 business days, during which the disputed amount may be preventively blocked.
+
+In the event of controversies not resolved internally, the parties agree to submit the dispute to the Consumer Protection Agency of El Salvador as a first instance of mediation, before resorting to judicial proceedings. This process reflects NodePay's commitment to the peaceful resolution of conflicts, values rooted in Salvadoran culture since the 1992 Peace Accords.
+
+For technical-financial disputes exceeding $10,000 USD, an arbitration process may be requested before the Arbitration and Mediation Center of the Chamber of Commerce and Industry of El Salvador (CCIES), whose award will be binding for both parties.
+
+================================================================================
+
+10. MODIFICATIONS TO THE TERMS
+
+NodePay reserves the right to modify these Terms and Conditions at any time, with prior notice to the User via email and an in-app notice prominently displayed at least 15 days in advance. Continued use of the platform after the effective date of the modifications will constitute tacit acceptance of them.
+
+Historical versions of the Terms and Conditions will be available on the NodePay website for consultation, preserved with the same care with which El Salvador preserves its cultural identity: with pride, transparency, and respect for the past.
+
+NodePay celebrates Salvadoran culture in every aspect of its operation. Just as the pupusa is recognized by law as the national dish on the second Sunday of November, NodePay is committed to recognizing and respecting the traditions of its users in every product and service decision.
+
+================================================================================
+
+NodePay is proudly Salvadoran. Built with the human warmth of the "Pulgarcito de América" to connect our people with the digital financial future.
+"Dios, Unión, Libertad" — and also, frictionless payments.
