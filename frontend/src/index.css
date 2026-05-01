@@ -1,1 +1,135 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@theme {
+  --color-background: var(--bg-color);
+  --color-surface: var(--surface-color);
+  --color-surface-elevated: var(--surface-elevated-color);
+
+  --color-foreground: var(--fg-color);
+  --color-muted-foreground: var(--muted-fg-color);
+
+  --color-accent: var(--accent-color);
+  --color-accent-hover: var(--accent-hover-color);
+
+  --color-border-subtle: var(--border-subtle-color);
+  --color-border-hover: var(--border-hover-color);
+
+  --color-card-bg: var(--card-bg-color);
+  --color-card-bg-hover: var(--card-bg-hover-color);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --shadow-glow-sm: var(--glow-sm-shadow);
+  --shadow-glow-md: var(--glow-md-shadow);
+  --shadow-border-glow: var(--glow-border-shadow);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg-color: #F8FAFC;
+    --surface-color: #FFFFFF;
+    --surface-elevated-color: #F1F5F9;
+    --fg-color: #0F172A;
+    --muted-fg-color: #64748B;
+    --accent-color: #F59E0B;
+    --accent-hover-color: #D97706;
+    --border-subtle-color: rgba(15, 23, 42, 0.1);
+    --border-hover-color: rgba(15, 23, 42, 0.2);
+    --card-bg-color: rgba(255, 255, 255, 0.8);
+    --card-bg-hover-color: rgba(255, 255, 255, 1);
+    --glow-sm-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+    --glow-md-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+    --glow-border-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2), 0 0 15px rgba(245, 158, 11, 0.1);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --bg-color: #0A0A0F;
+    --surface-color: #12121A;
+    --surface-elevated-color: #1A1A24;
+    --fg-color: #FAFAFA;
+    --muted-fg-color: #71717A;
+    --accent-color: #F59E0B;
+    --accent-hover-color: #D97706;
+    --border-subtle-color: rgba(255, 255, 255, 0.08);
+    --border-hover-color: rgba(255, 255, 255, 0.15);
+    --card-bg-color: rgba(26, 26, 36, 0.6);
+    --card-bg-hover-color: rgba(26, 26, 36, 0.8);
+    --glow-sm-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+    --glow-md-shadow: 0 0 40px rgba(245, 158, 11, 0.2);
+    --glow-border-shadow: 0 0 0 1px rgba(245, 158, 11, 0.3), 0 0 20px rgba(245, 158, 11, 0.15);
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased transition-colors duration-500;
+    background-image: radial-gradient(ellipse at top, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card-bg backdrop-blur-md border border-border-subtle rounded-xl transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-border-hover bg-card-bg-hover scale-[1.02] shadow-lg;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-[#0A0A0F] font-medium rounded-lg px-6 py-3 transition-all duration-200 border-none outline-none;
+  }
+
+  .btn-primary:hover {
+    @apply brightness-110 shadow-glow-sm;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+  }
+
+  .btn-primary:active {
+    @apply scale-[0.98];
+  }
+
+  .btn-primary:focus-visible {
+    @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-foreground border border-border-hover rounded-lg px-6 py-3 transition-all duration-200;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-white/5 border-white/25;
+  }
+
+  .btn-secondary:active {
+    @apply scale-[0.98];
+  }
+
+  .btn-secondary:focus-visible {
+    @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  .input-glass {
+    @apply bg-card-bg backdrop-blur-md border border-border-subtle rounded-lg h-11 px-4 text-foreground placeholder:text-muted-foreground transition-all duration-200 outline-none;
+  }
+
+  .input-glass:focus {
+    @apply border-accent/50 ring-2 ring-accent/20 shadow-glow-sm;
+  }
+}

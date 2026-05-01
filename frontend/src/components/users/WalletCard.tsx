@@ -30,47 +30,48 @@ export const WalletCard = ({ wallet }: WalletCardProps) => {
     };
 
     if (!wallet) {
-        return <div className="rounded-xl bg-slate-100 p-6">The user does not have an assigned wallet.</div>;
+        return <div className="glass-card p-6 text-sm text-slate-500 dark:text-slate-400 text-center">The user does not have an assigned wallet.</div>;
     }
 
     return (
-        <div className="rounded-xl bg-linear-to-br from-slate-800 to-slate-900 p-6 shadow-lg text-white relative overflow-hidden flex flex-col justify-between">
+        <div className="glass-card p-6 border-amber-500/20 relative overflow-hidden flex flex-col justify-between group">
+            <div className="absolute inset-0 bg-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10">
                 <div className="flex justify-between items-start mb-1">
-                    <h2 className="text-sm font-medium text-slate-300">Current Balance</h2>
+                    <h2 className="text-sm font-medium text-slate-500 dark:text-slate-400">Current Balance</h2>
 
                     {/* Toggle Switch para el Simulador */}
                     <button
                         onClick={handleToggleSimulation}
-                        className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none ${isSimulating ? 'bg-emerald-500' : 'bg-slate-600'}`}
-                        title={isSimulating ? 'Detener simulación' : 'Iniciar simulación'}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isSimulating ? 'bg-amber-500 shadow-glow-sm' : 'bg-slate-50 dark:bg-slate-900-elevated border border-slate-200 dark:border-slate-800'}`}
+                        title={isSimulating ? 'Stop simulation' : 'Start simulation'}
                     >
-                        <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${isSimulating ? 'translate-x-5' : 'translate-x-1'}`} />
+                        <span className={`inline-block h-4 w-4 transform rounded-full transition-transform ${isSimulating ? 'translate-x-6 bg-[#0A0A0F]' : 'translate-x-1 bg-muted-foreground'}`} />
                     </button>
                 </div>
 
-                <div className="flex items-baseline space-x-2 mt-2">
-                    <span className={`text-4xl font-bold tracking-tight transition-all duration-300 ${isSimulating ? 'text-emerald-400' : 'text-white'}`}>
+                <div className="flex items-baseline space-x-2 mt-4">
+                    <span className={`text-4xl font-display font-bold tracking-tight transition-colors duration-300 ${isSimulating ? 'text-amber-600 dark:text-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]' : 'text-slate-900 dark:text-slate-50'}`}>
                         ${wallet.balance.toFixed(2)}
                     </span>
-                    <span className="text-lg font-medium text-slate-400">
+                    <span className="text-lg font-medium text-slate-500 dark:text-slate-400">
                         {wallet.currency}
                     </span>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-slate-700/50 flex justify-between items-center">
-                    <p className="text-xs text-slate-400 font-mono">
+                <div className="mt-8 pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                         Wallet ID: {wallet.id.substring(0, 8)}...
                     </p>
                     {isSimulating && (
-                        <span className="flex items-center text-xs text-emerald-400 font-medium">
-                            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span>
+                        <span className="flex items-center text-xs text-amber-600 dark:text-amber-500 font-medium bg-amber-500/10 px-2 py-1 rounded-full border border-amber-500/20">
+                            <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse mr-1.5 shadow-glow-sm"></span>
                             Live
                         </span>
                     )}
                 </div>
             </div>
-            <div className="absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-blue-500/20 blur-2xl pointer-events-none"></div>
+            <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-amber-500/10 blur-[60px] pointer-events-none"></div>
         </div>
     );
 };

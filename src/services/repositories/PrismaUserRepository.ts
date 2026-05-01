@@ -41,10 +41,24 @@ export class PrismaUserRepository implements IUserRepository {
         });
     }
 
-    async getUsers() {
-        return await this.prisma.user.findMany({
-            include: { wallet: true }
-        });
+    async getUsers(limit: number, offset: number, search?: string) {
+        const where = search ? {
+            OR: [
+                { name: { contains: search, mode: 'insensitive' as const } },
+                { email: { contains: search, mode: 'insensitive' as const } }
+            ]
+        } : {};
+
+        const [data, total] = await Promise.all([
+            this.prisma.user.findMany({
+                where,
+                skip: offset,
+                take: limit,
+                include: { wallet: true }
+            }),
+            this.prisma.user.count({ where })
+        ]);
+        return { data, total };
     }
 
     async getUserById(id: string) {

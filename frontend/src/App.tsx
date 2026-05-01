@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
+import { useUiStore } from './store/uiStore';
 
 import { ProtectedRoute } from './router/ProtectedRoute';
 import { Login } from './pages/Login';
@@ -14,11 +15,21 @@ import { EditUser } from './pages/EditUser';
 
 function App() {
   const { isInitialized, initKeycloak } = useAuthStore();
+  const { theme } = useUiStore();
 
   // Inicializar Auth Global
   useEffect(() => {
     initKeycloak();
   }, [initKeycloak]);
+
+  // Aplicar tema (Modo Claro / Oscuro)
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   if (!isInitialized) {
     return (

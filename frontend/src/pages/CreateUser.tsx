@@ -19,18 +19,18 @@ export const CreateUser = () => {
     };
 
     return (
-        <div className="mx-auto max-w-2xl overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="mb-6 text-2xl font-bold text-gray-900">Create User</h2>
+        <div className="mx-auto max-w-2xl glass-card p-8">
+            <h2 className="mb-8 text-2xl font-display font-bold text-slate-900 dark:text-slate-50">Create User</h2>
 
             {!!error && (
-                <div className="mb-4 rounded-md bg-red-50 p-4 text-red-700">
+                <div className="mb-6 rounded-xl bg-red-900/20 p-5 text-red-400 border border-red-500/30 backdrop-blur-md">
                     <p className="font-semibold">Error creating user. {(error as any)?.data?.message || ''}</p>
                 </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-900 dark:text-slate-50 mb-2">
                         Full Name
                     </label>
                     <input
@@ -39,12 +39,12 @@ export const CreateUser = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="input-glass w-full"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-900 dark:text-slate-50 mb-2">
                         Email
                     </label>
                     <input
@@ -53,22 +53,22 @@ export const CreateUser = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="input-glass w-full"
                     />
                 </div>
 
-                <div className="flex gap-4 pt-4">
+                <div className="flex gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
                     <button
                         type="button"
                         onClick={() => navigate('/dashboard/users')}
-                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="w-full btn-secondary"
                     >
                         Cancel
                     </button>
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-400"
+                        className="w-full btn-primary disabled:opacity-50 disabled:hover:brightness-100 disabled:hover:shadow-none disabled:cursor-not-allowed"
                     >
                         {isLoading ? 'Creating...' : 'Create User'}
                     </button>

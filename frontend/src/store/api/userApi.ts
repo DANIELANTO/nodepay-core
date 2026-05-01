@@ -10,6 +10,14 @@ export interface User {
     wallet?: Wallet;
 }
 
+export interface PaginatedResponse<T> {
+    data: T[];
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+}
+
 export interface CreateUserRequest {
     name: string;
     email: string;
@@ -27,8 +35,14 @@ export const userApi = createApi({
     baseQuery: axiosBaseQuery(),
     tagTypes: ['User'],
     endpoints: (builder) => ({
-        getUsers: builder.query<User[], void>({
-            query: () => ({ url: '/users', method: 'GET' }),
+        getUsers: builder.query<PaginatedResponse<User>, { page?: number; limit?: number; search?: string }>({
+            query: ({ page = 1, limit = 10, search = '' } = {}) => {
+                let url = `/users?page=${page}&limit=${limit}`;
+                if (search) {
+                    url += `&search=${encodeURIComponent(search)}`;
+                }
+                return { url, method: 'GET' };
+            },
             providesTags: ['User'],
         }),
         getUserById: builder.query<User, string>({

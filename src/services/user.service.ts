@@ -11,8 +11,11 @@ export class UserService {
         return await this.userRepository.toggleUserStatus(id);
     }
 
-    public async getAllUsers() {
-        return await this.userRepository.getUsers();
+    public async getAllUsers(limit: number, offset: number, search?: string) {
+        if (typeof limit !== 'number' || limit <= 0 || typeof offset !== 'number' || offset < 0) {
+            throw new Error('Limit and offset must be positive numbers');
+        }
+        return await this.userRepository.getUsers(limit, offset, search);
     }
 
     public async getUserById(id: string) {

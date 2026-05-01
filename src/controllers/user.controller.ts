@@ -40,10 +40,34 @@ export const toggleUserStatus = async (req: Request, res: Response): Promise<voi
 
 export const getUsers = async (req: Request, res: Response): Promise<void> => {
     try {
-        const users = await userService.getAllUsers();
-        res.status(200).json(users);
-    } catch (error) {
+        const pageQuery = req.query.page as string;
+        const limitQuery = req.query.limit as string;
+        const search = req.query.search as string;
+
+        const limit = parseInt(limitQuery, 10) || 10;
+        const page = parseInt(pageQuery, 10) || 1;
+        const offset = (page - 1) * limit;
+
+        if (limit <= 0 || page <= 0) {
+            res.status(400).json({ error: 'Page and limit must be positive numbers' });
+            return;
+        }
+
+        const result = await userService.getAllUsers(limit, offset, search);
+        
+        res.status(200).json({
+            data: result.data,
+            total: result.total,
+            page,
+            limit,
+            totalPages: Math.ceil(result.total / limit)
+        });
+    } catch (error: any) {
         console.error(error);
+        if (error.message === 'Limit and offset must be positive numbers') {
+            res.status(400).json({ error: error.message });
+            return;
+        }
         res.status(500).json({ error: 'Internal server error' });
     }
 };

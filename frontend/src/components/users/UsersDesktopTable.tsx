@@ -11,31 +11,31 @@ interface UsersDesktopTableProps {
 }
 
 export const UsersDesktopTable = ({ users, onRequestToggle }: UsersDesktopTableProps) => (
-    <div className="hidden overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm md:block">
+    <div className="hidden md:block glass-card">
         <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-100 text-sm">
-                <thead>
-                    <tr className="text-xs font-semibold uppercase tracking-wider text-green-800">
-                        <th className="px-6 py-4 text-left">ID</th>
-                        <th className="px-6 py-4 text-left">User</th>
-                        <th className="px-6 py-4 text-left">Email</th>
-                        <th className="px-6 py-4 text-left">Status</th>
-                        <th className="px-6 py-4 text-right">Actions</th>
+            <table className="min-w-full divide-y divide-border-subtle text-sm">
+                <thead className="bg-white/5">
+                    <tr className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        <th className="px-6 py-5 text-left font-mono">ID</th>
+                        <th className="px-6 py-5 text-left">User</th>
+                        <th className="px-6 py-5 text-left">Email</th>
+                        <th className="px-6 py-5 text-left">Status</th>
+                        <th className="px-6 py-5 text-right">Actions</th>
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-50">
+                <tbody className="divide-y divide-border-subtle">
                     {users.map((user) => (
-                        <tr key={user.id} className="group transition-colors hover:bg-gray-100/70">
-                            <td className="px-6 py-4 font-mono text-xs text-gray-900">
+                        <tr key={user.id} className="group transition-colors hover:bg-white/5">
+                            <td className="px-6 py-4 font-mono text-xs text-slate-500 dark:text-slate-400">
                                 {shortId(user.id)}
                             </td>
                             <td className="px-6 py-4">
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-4">
                                     <Avatar name={user.name} size="md" />
-                                    <span className="font-semibold text-gray-900">{user.name}</span>
+                                    <span className="font-semibold text-slate-900 dark:text-slate-50">{user.name}</span>
                                 </div>
                             </td>
-                            <td className="px-6 py-4 text-gray-700">{user.email}</td>
+                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">{user.email}</td>
                             <td className="px-6 py-4">
                                 <StatusBadge
                                     label={user.isActive ? 'ACTIVE' : 'INACTIVE'}

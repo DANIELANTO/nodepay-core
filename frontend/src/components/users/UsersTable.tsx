@@ -1,8 +1,9 @@
 // src/components/users/UsersTable.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetUsersQuery, useToggleUserStatusMutation } from '../../store/api/userApi';
 import type { User } from '../../store/api/userApi';
+import { useUiStore } from '../../store/uiStore';
 import { ConfirmModal } from '../ui/ConfirmModal';
 import { UserCard } from './UserCard';
 import { UsersDesktopTable } from './UsersDesktopTable';
@@ -10,25 +11,25 @@ import { UsersDesktopTable } from './UsersDesktopTable';
 /* ─── Loading state ─────────────────────────────────────── */
 const LoadingSpinner = () => (
     <div className="flex justify-center p-12">
-        <div className="h-9 w-9 animate-spin rounded-full border-4 border-green-500 border-t-transparent" />
+        <div className="h-9 w-9 animate-spin rounded-full border-4 border-amber-500 border-t-transparent shadow-glow-sm" />
     </div>
 );
 
 /* ─── Error state ───────────────────────────────────────── */
 const ErrorMessage = () => (
-    <div className="rounded-xl bg-red-50 p-5 text-red-700">
+    <div className="rounded-xl bg-red-900/20 p-5 text-red-400 border border-red-500/30 backdrop-blur-md">
         <p className="font-semibold">Error loading users.</p>
-        <p className="text-sm">Verify that the User Management Service is running.</p>
+        <p className="text-sm mt-1 text-red-400/80">Verify that the User Management Service is running.</p>
     </div>
 );
 
 /* ─── Empty state ───────────────────────────────────────── */
 const EmptyState = () => (
-    <div className="flex flex-col items-center gap-4 py-16">
-        <p className="text-gray-400">No users registered.</p>
+    <div className="flex flex-col items-center gap-5 py-20 glass-card">
+        <p className="text-slate-500 dark:text-slate-400">No users registered.</p>
         <Link
             to="/dashboard/users/new"
-            className="rounded-lg bg-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-700"
+            className="btn-primary"
         >
             + Create New User
         </Link>
@@ -37,17 +38,28 @@ const EmptyState = () => (
 
 /* ─── Main Orchestrator ─────────────────────────────────── */
 export const UsersTable = () => {
-    const { data: users = [], isLoading, isError } = useGetUsersQuery();
-    const [toggleUserStatus, { isLoading: isToggling }] = useToggleUserStatusMutation();
+    const [page, setPage] = useState(1);
+    const limit = useUiStore((state) => state.usersTableLimit);
+    const setLimit = useUiStore((state) => state.setUsersTableLimit);
 
     const [search, setSearch] = useState('');
-    const [userToToggle, setUserToToggle] = useState<Pick<User, 'id' | 'isActive' | 'name'> | null>(null);
+    const [debouncedSearch, setDebouncedSearch] = useState('');
 
-    const filtered = users.filter(
-        (u) =>
-            u.name.toLowerCase().includes(search.toLowerCase()) ||
-            u.email.toLowerCase().includes(search.toLowerCase()),
-    );
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (debouncedSearch !== search) {
+                setDebouncedSearch(search);
+                setPage(1);
+            }
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [search, debouncedSearch]);
+
+    const { data: response, isLoading, isError } = useGetUsersQuery({ page, limit, search: debouncedSearch });
+    const users = response?.data || [];
+    const [toggleUserStatus, { isLoading: isToggling }] = useToggleUserStatusMutation();
+
+    const [userToToggle, setUserToToggle] = useState<Pick<User, 'id' | 'isActive' | 'name'> | null>(null);
 
     const handleConfirm = async () => {
         if (!userToToggle) return;
@@ -67,28 +79,28 @@ export const UsersTable = () => {
     return (
         <>
             {/* ── Header ─────────────────────────────────── */}
-            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-xl font-bold text-white">Users</h2>
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-slate-50">Users</h2>
                 <Link
                     to="/dashboard/users/new"
                     id="create-user-btn"
-                    className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-green-700"
+                    className="btn-primary inline-flex items-center gap-2"
                 >
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                        <path d="M12 4v16m8-8H4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
                     Create New User
                 </Link>
             </div>
 
             {/* ── Search ─────────────────────────────────── */}
-            <div className="relative mb-4">
+            <div className="relative mb-6">
                 <svg
-                    className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+                    className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500 dark:text-slate-400"
                     fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"
                 >
                     <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-4.35-4.35" />
                 </svg>
                 <input
                     id="search-users"
@@ -96,19 +108,86 @@ export const UsersTable = () => {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by name or email..."
-                    className="w-full rounded-xl border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 shadow-sm placeholder:text-gray-600 focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-100"
+                    className="input-glass w-full pl-12"
                 />
             </div>
 
             {/* ── Mobile: card list (hidden on md+) ──────── */}
-            <div className="flex flex-col gap-3 md:hidden">
-                {filtered.map((user) => (
+            <div className="flex flex-col gap-4 md:hidden">
+                {users.map((user) => (
                     <UserCard key={user.id} user={user} onRequestToggle={setUserToToggle} />
                 ))}
             </div>
 
             {/* ── Desktop: table (hidden below md) ───────── */}
-            <UsersDesktopTable users={filtered} onRequestToggle={setUserToToggle} />
+            <UsersDesktopTable users={users} onRequestToggle={setUserToToggle} />
+
+            {/* ── Pagination ───────────────────────────── */}
+            {response && (
+                <div className="mt-8 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between glass-card px-6 py-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+                        <div className="flex items-center gap-3">
+                            <label htmlFor="limit-select" className="text-sm text-slate-500 dark:text-slate-400">Rows per page:</label>
+                            <select
+                                id="limit-select"
+                                value={limit}
+                                onChange={(e) => {
+                                    setLimit(Number(e.target.value));
+                                    setPage(1);
+                                }}
+                                className="input-glass h-9 bg-transparent py-0 pl-3 pr-8 text-sm"
+                            >
+                                {[5, 10, 25, 50].map((size) => (
+                                    <option key={size} value={size} className="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50">
+                                        {size}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="hidden sm:block h-5 w-px bg-border-subtle"></div>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 text-center sm:text-left">
+                            Showing <span className="font-medium text-slate-900 dark:text-slate-50">{response.total === 0 ? 0 : (response.page - 1) * response.limit + 1}</span> to{' '}
+                            <span className="font-medium text-slate-900 dark:text-slate-50">{Math.min(response.page * response.limit, response.total)}</span> of{' '}
+                            <span className="font-medium text-slate-900 dark:text-slate-50">{response.total}</span> results
+                        </p>
+                    </div>
+                    <div className="flex justify-center">
+                        <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                            <button
+                                onClick={() => setPage(p => Math.max(1, p - 1))}
+                                disabled={response.page === 1}
+                                className="relative inline-flex items-center rounded-l-md px-3 py-2 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:bg-white/5 focus:z-20 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+                            >
+                                <span className="sr-only">Previous</span>
+                                <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+                                </svg>
+                            </button>
+
+                            {Array.from({ length: response.totalPages }).map((_, i) => (
+                                <button
+                                    key={i + 1}
+                                    onClick={() => setPage(i + 1)}
+                                    className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold border border-slate-200 dark:border-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 transition-colors ${response.page === i + 1 ? 'z-10 bg-amber-500 text-[#0A0A0F] border-amber-500 hover:brightness-110 shadow-glow-sm' : 'text-slate-900 dark:text-slate-50 hover:bg-white/5 focus:z-20'}`}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+
+                            <button
+                                onClick={() => setPage(p => Math.min(response.totalPages, p + 1))}
+                                disabled={response.page === response.totalPages}
+                                className="relative inline-flex items-center rounded-r-md px-3 py-2 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:bg-white/5 focus:z-20 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+                            >
+                                <span className="sr-only">Next</span>
+                                <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                </svg>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            )}
 
             {/* ── Confirm Modal ───────────────────────────── */}
             <ConfirmModal
@@ -117,8 +196,8 @@ export const UsersTable = () => {
                 description={
                     <>
                         Are you sure you want to{' '}
-                        <strong>{userToToggle?.isActive ? 'disable' : 'enable'}</strong>{' '}
-                        user {userToToggle?.name}?
+                        <strong className="text-slate-900 dark:text-slate-50">{userToToggle?.isActive ? 'disable' : 'enable'}</strong>{' '}
+                        user <span className="text-slate-900 dark:text-slate-50 font-medium">{userToToggle?.name}</span>?
                     </>
                 }
                 confirmLabel={userToToggle?.isActive ? 'Disable' : 'Enable'}

@@ -53,13 +53,13 @@ def initialize_rag():
         docs = loader.load()
 
         # Dividir el texto en fragmentos manejables (Chunks)
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         chunks = text_splitter.split_documents(docs)
 
         # Crear Embeddings y guardarlos en la base de datos vectorial FAISS
         embeddings_model = OpenAIEmbeddings()
         vectorstore = FAISS.from_documents(chunks, embeddings_model)
-        retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
+        retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
 
         # Configurar el LLM
         llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
@@ -89,6 +89,7 @@ def initialize_rag():
 
         db = SQLDatabase.from_uri(
             db_url, 
+            schema=schema if schema else None,
             sample_rows_in_table_info=1,
             engine_args=engine_args
         )
@@ -109,6 +110,7 @@ def initialize_rag():
            You MUST prepend this schema name to ALL table names in your SQL queries.
            WRONG: SELECT COUNT(*) FROM "User";
            RIGHT: SELECT COUNT(*) FROM {schema_name}."User";
+           HOWEVER, when using the `sql_db_schema` tool, pass ONLY the exact table name exactly as output by `sql_db_list_tables` (e.g. "User", NOT "{schema_name}.User").
         """
 
         # Pasamos el prefijo al agente
@@ -127,8 +129,9 @@ def initialize_rag():
             "You are the official AI assistant for NodePay. Your ONLY purpose is to answer questions based on the provided official documentation. "
             "Use the following pieces of retrieved context to answer the user's question. "
             "CRITICAL RULES: "
-            "1. If the answer is not contained in the context, or if the user asks about unrelated topics (e.g., food, math, general knowledge), you must explicitly state that you do not know the answer. "
-            "2. Never try to make up an answer, guess, or use outside knowledge. Honesty is your top priority. "
+            "1. If the user asks about a topic, and there is ANY mention of that topic in the context, you must answer by providing the relevant information from the context. "
+            "2. If the topic is entirely absent from the context, or if the user asks about completely unrelated topics (e.g., food, math, general knowledge), you must explicitly state that you do not know the answer. "
+            "3. Never try to make up an answer, guess, or use outside knowledge. Honesty is your top priority. "
             "Context: {context}"
         )
         
@@ -159,7 +162,7 @@ async def ask_question(req: QuestionRequest):
     
     results = semantic_cache.similarity_search_with_score(req.question, k=1)
     best_match, score = results[0]
-    if best_match.page_content != "dummy_startup" and score < 0.15:
+    if best_match.page_content != "dummy_startup" and score < 0.05:
         print(f"CACHE HIT! Ahorrando tokens. Score de similitud: {score}")
         return {
             "question": req.question,
