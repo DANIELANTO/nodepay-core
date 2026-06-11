@@ -51,3 +51,46 @@ El contexto de `.ai/context/` DEBE actualizarse proactivamente en los siguientes
 * Un prompt directo del usuario introduce información relevante (contexto de despliegue, infraestructura, lógica no escrita, etc.).
 
 Tu tarea es ser el guardián de la memoria del proyecto (Harness) para que los futuros agentes que abran este repositorio tengan una visión correcta, actualizada y 100% alineada a la realidad del código.
+
+## Manejo de cambios adicionales sobre una spec existente
+
+Si después de implementar o iniciar una spec aparecen cambios adicionales, el agente debe decidir si el cambio es una extensión del objetivo original o si representa un objetivo nuevo.
+
+### Actualizar la spec existente cuando:
+
+- El cambio mantiene el mismo objetivo principal.
+- Solo amplía el alcance.
+- Afecta pantallas o componentes relacionados con la misma feature.
+- Busca consistencia visual, funcional o técnica con lo ya implementado.
+- Corrige una omisión del spec original.
+- Ajusta criterios de aceptación sin cambiar la intención principal.
+
+### Crear una nueva spec cuando:
+
+- El cambio introduce una feature diferente.
+- El cambio requiere una arquitectura nueva.
+- El cambio tiene criterios de aceptación independientes.
+- El cambio afecta otra área del sistema sin relación directa.
+- El cambio introduce una decisión técnica importante separada.
+- El cambio es suficientemente grande como para implementarse, probarse y revisarse de forma independiente.
+
+### Regla general
+
+No crear specs nuevos innecesariamente. Si el cambio es parte de la misma intención de producto o diseño, actualizar la spec existente y registrar la ampliación del alcance.
+
+Cuando una spec ya fue implementada pero necesita ampliarse, cambiar su estado a:
+
+`Implementada - requiere ampliación`
+
+o crear una sección llamada:
+
+`## Cambios posteriores / Ampliaciones`
+
+Cada ampliación debe documentar:
+
+- Fecha.
+- Motivo del cambio.
+- Nuevo alcance.
+- Archivos o módulos adicionales afectados.
+- Nuevos criterios de aceptación.
+- Impacto en contexto o arquitectura.

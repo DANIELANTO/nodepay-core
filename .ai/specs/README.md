@@ -40,3 +40,36 @@ En caso afirmativo, se deben actualizar los siguientes archivos según correspon
 - `.ai/context/file-map.md` (si se añadieron/movieron archivos estructurales).
 - `.ai/context/decisions.md` (si la spec introdujo una decisión técnica permanente).
 - `.ai/context/project-context.md` (si cambiaron comandos, variables de entorno, o descripciones base).
+
+## Manejo de Bugs y Fixes
+
+No todos los bugs requieren una nueva spec.
+
+### Actualizar una spec existente cuando:
+
+- El bug fue introducido por esa misma spec.
+- El bug es consecuencia directa de una feature reciente.
+- El fix forma parte del mismo objetivo funcional.
+- El cambio no representa una nueva iniciativa.
+
+### Crear una nueva spec cuando:
+
+- El bug es independiente de las specs actuales.
+- El bug requiere cambios arquitectónicos.
+- El bug afecta múltiples módulos sin relación directa con la spec original.
+- El fix requiere una estrategia técnica propia.
+- El bug representa una iniciativa de trabajo independiente.
+
+### Regla general
+
+Si el fix responde a la pregunta:
+
+"¿Esto sigue siendo parte del mismo objetivo?"
+
+Entonces actualizar la spec existente.
+
+Si responde a:
+
+"¿Esto merece su propia planificación, análisis y criterios de aceptación?"
+
+Entonces crear una nueva spec.
