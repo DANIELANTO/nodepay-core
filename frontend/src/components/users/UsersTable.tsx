@@ -74,7 +74,6 @@ export const UsersTable = () => {
 
     if (isLoading) return <LoadingSpinner />;
     if (isError) return <ErrorMessage />;
-    if (users.length === 0) return <EmptyState />;
 
     return (
         <>
@@ -108,11 +107,27 @@ export const UsersTable = () => {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by name or email..."
-                    className="input-glass w-full pl-12"
+                    className="input-glass w-full !pl-12"
                 />
             </div>
 
-            {/* ── Mobile: card list (hidden on md+) ──────── */}
+            {users.length === 0 ? (
+                search ? (
+                    <div className="flex flex-col items-center gap-5 py-20 glass-card">
+                        <p className="text-slate-500 dark:text-slate-400">No users found matching "{search}".</p>
+                        <button
+                            onClick={() => setSearch('')}
+                            className="btn-secondary"
+                        >
+                            Clear Search
+                        </button>
+                    </div>
+                ) : (
+                    <EmptyState />
+                )
+            ) : (
+                <>
+                    {/* ── Mobile: card list (hidden on md+) ──────── */}
             <div className="flex flex-col gap-4 md:hidden">
                 {users.map((user) => (
                     <UserCard key={user.id} user={user} onRequestToggle={setUserToToggle} />
@@ -187,6 +202,8 @@ export const UsersTable = () => {
                         </nav>
                     </div>
                 </div>
+            )}
+                </>
             )}
 
             {/* ── Confirm Modal ───────────────────────────── */}

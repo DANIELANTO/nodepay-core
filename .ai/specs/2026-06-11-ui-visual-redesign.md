@@ -301,3 +301,22 @@ Archivos de contexto a actualizar post-implementación:
 - **Glassmorphism:** Reducido. `.glass-card` ya no usa `backdrop-blur-md`. Fondo sólido con sombra suave.
 - **`ConfirmModal` `success`:** Intencionalmente usa azul-violeta (no verde) para consistencia semántica con el design system.
 - **`App.css`:** Contiene estilos de scaffolding de Vite (`hero`, `counter`, etc.) que no se usan en producción. No tocar.
+
+---
+
+## Cambios posteriores / Ampliaciones
+
+### Ampliación: Corrección de bugs en Barra de Búsqueda de Usuarios
+- **Fecha:** 2026-06-11
+- **Motivo del cambio:**
+  - El icono de búsqueda se superponía con el placeholder y el texto debido a falta de padding adecuado (`!pl-12` sobre la clase `input-glass`).
+  - La barra de búsqueda desaparecía completamente si no había resultados, imposibilitando limpiar la búsqueda o regresar a la tabla.
+- **Nuevo alcance:**
+  - Ajuste de estilos en el `input` de búsqueda para forzar `!pl-12`.
+  - Reestructuración del renderizado en `UsersTable.tsx` para mantener visible el `Header` y la barra de búsqueda incluso cuando `users.length === 0`.
+- **Archivos o módulos afectados:**
+  - `frontend/src/components/users/UsersTable.tsx`
+- **Nuevos criterios de aceptación:**
+  - [ ] **CA-12:** El texto en la barra de búsqueda no se superpone con el icono de la lupa.
+  - [ ] **CA-13:** Al realizar una búsqueda que no arroja resultados, la barra de búsqueda sigue visible y permite limpiar el filtro.
+- **Impacto en contexto o arquitectura:** Ninguno (cambio UI/UX a nivel componente).
