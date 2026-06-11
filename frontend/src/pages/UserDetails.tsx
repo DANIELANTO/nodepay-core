@@ -10,7 +10,7 @@ export const UserDetails = () => {
     if (isLoading) {
         return (
             <div className="flex h-64 items-center justify-center">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent shadow-glow-sm"></div>
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent shadow-glow-sm"></div>
             </div>
         );
     }

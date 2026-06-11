@@ -25,7 +25,7 @@ export const UsersDesktopTable = ({ users, onRequestToggle }: UsersDesktopTableP
                 </thead>
                 <tbody className="divide-y divide-border-subtle">
                     {users.map((user) => (
-                        <tr key={user.id} className="group transition-colors hover:bg-white/5">
+                        <tr key={user.id} className="group transition-colors hover:bg-surface-elevated">
                             <td className="px-6 py-4 font-mono text-xs text-slate-500 dark:text-slate-400">
                                 {shortId(user.id)}
                             </td>

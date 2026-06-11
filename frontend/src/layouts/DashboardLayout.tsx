@@ -14,8 +14,8 @@ export const DashboardLayout = () => {
     return (
         <div className="relative min-h-screen p-4 sm:p-8 overflow-hidden">
             {/* Ambient Orbs */}
-            <div className="fixed top-[-10%] right-[10%] w-[500px] h-[500px] rounded-full bg-amber-500/5 blur-[150px] pointer-events-none z-0" />
-            <div className="fixed bottom-[-10%] left-[5%] w-[400px] h-[400px] rounded-full bg-amber-500/5 blur-[120px] pointer-events-none z-0" />
+            <div className="fixed top-[-10%] right-[10%] w-[500px] h-[500px] rounded-full bg-indigo-500/5 blur-[150px] pointer-events-none z-0" />
+            <div className="fixed bottom-[-10%] left-[5%] w-[400px] h-[400px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none z-0" />
 
             <div className="mx-auto max-w-6xl relative z-10">
 
@@ -25,21 +25,21 @@ export const DashboardLayout = () => {
                         <h1 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-50">Administration Panel</h1>
                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 sm:mb-4 mt-2">Manage access and view NodePay regulations.</p>
 
-                        <div className="flex space-x-6 sm:space-x-8 border-b border-slate-200 dark:border-slate-800 overflow-x-auto whitespace-nowrap pb-1">
+                        <div className="flex space-x-6 sm:space-x-8 border-b border-border-subtle overflow-x-auto whitespace-nowrap pb-1">
                             <Link
                                 to="/dashboard/users"
-                                className={`pb-3 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-amber-600 dark:text-amber-500 ${location.pathname.includes('/users')
-                                    ? 'border-amber-500 text-amber-600 dark:text-amber-500'
-                                    : 'border-transparent text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:text-slate-50'
+                                className={`pb-3 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-accent ${location.pathname.includes('/users')
+                                    ? 'border-accent text-accent'
+                                    : 'border-transparent text-muted-foreground hover:border-border-hover hover:text-foreground'
                                     }`}
                             >
                                 User List
                             </Link>
                             <Link
                                 to="/dashboard/terms"
-                                className={`pb-3 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-amber-600 dark:text-amber-500 ${location.pathname.includes('/terms')
-                                    ? 'border-amber-500 text-amber-600 dark:text-amber-500'
-                                    : 'border-transparent text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:border-slate-700 hover:text-slate-900 dark:text-slate-50'
+                                className={`pb-3 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-accent ${location.pathname.includes('/terms')
+                                    ? 'border-accent text-accent'
+                                    : 'border-transparent text-muted-foreground hover:border-border-hover hover:text-foreground'
                                     }`}
                             >
                                 Terms and Conditions
@@ -50,16 +50,16 @@ export const DashboardLayout = () => {
                     <div className="mt-6 sm:mt-0 w-full sm:w-auto flex items-center gap-3">
                         <button
                             onClick={toggleTheme}
-                            className="btn-secondary p-3 flex items-center justify-center rounded-lg transition-transform duration-300 hover:scale-105"
+                            className="btn-secondary p-3 flex items-center justify-center rounded-lg"
                             aria-label="Toggle Theme"
                             title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
                         >
                             {theme === 'dark' ? (
-                                <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             ) : (
-                                <svg className="w-5 h-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                                 </svg>
                             )}
@@ -83,7 +83,7 @@ export const DashboardLayout = () => {
             {/* Botón Flotante (FAB) para abrir la Inteligencia Artificial */}
             <button
                 onClick={() => setIsAIOpen(true)}
-                className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-slate-50 dark:bg-slate-900-elevated border border-slate-200 dark:border-slate-800 text-2xl text-amber-600 dark:text-amber-500 shadow-lg transition-all duration-300 hover:scale-105 hover:border-amber-500/30 hover:shadow-glow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:ring-offset-slate-950"
+                className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-surface border border-border-subtle text-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:border-accent/30 hover:shadow-glow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background cursor-pointer"
                 aria-label="Open AI Copilot"
             >
                 ✨

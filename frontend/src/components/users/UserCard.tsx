@@ -33,7 +33,7 @@ export const UserCard = ({ user, onRequestToggle }: UserCardProps) => (
             {user.wallet ? (
                 <Link
                     to={`/dashboard/users/${user.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-600 dark:text-amber-500 hover:text-amber-600 dark:text-amber-500-hover transition-colors outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm px-1"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-accent hover:text-accent-hover transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1"
                 >
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                         <rect x="2" y="5" width="20" height="14" rx="2" />

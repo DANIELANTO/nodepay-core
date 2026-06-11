@@ -100,3 +100,31 @@ Ahorro de costos, rendimiento y prevención de incidentes de ciberseguridad o co
 
 **Impacto:**  
 Obliga a mantener memoria en el servicio Python. El AI Service no puede efectuar cambios en el sistema, solo observar.
+
+---
+
+## DEC-0006: Rediseño Visual — Tema SaaS Azul-Violeta y Convención de Hover
+
+**Fecha:** 2026-06-11  
+**Estado:** Aceptada  
+**Spec de referencia:** `.ai/specs/2026-06-11-ui-visual-redesign.md`  
+**Contexto:**  
+El dashboard usaba un tema ámbar (`#F59E0B`) con glassmorphism pesado (`backdrop-blur`) y `scale-[1.02]` en hover global. Esto generaba una sensación de rebote incómoda en contenedores y los botones carecían de `cursor: pointer`.
+
+**Decisión:**  
+1. **Acento del sistema:** Migrar de ámbar (`#F59E0B`) a azul-violeta (`#4F46E5` / `indigo-600`). En modo oscuro: `#6366F1` (indigo-500).  
+2. **Fondo general:** `#F3F4F8` (modo claro) — gris muy claro tipo SaaS moderno.  
+3. **Tipografía:** Solo **Inter** para headings y body (se elimina Space Grotesk).  
+4. **`.glass-card`:** Rediseñada sin `backdrop-blur` y sin `scale` en hover. Usa fondo sólido blanco con sombra suave.  
+5. **Convención `scale` en hover:** Reservado **exclusivamente** para micro-interacciones de botones de acción puntual (FAB, submit). **Nunca** aplicar a contenedores, cards, tablas ni barras de navegación.  
+6. **Botones:** Deben incluir `cursor-pointer` explícitamente en sus clases utilitarias.  
+7. **`ConfirmModal`:** Variante `success` usa indigo (no verde) para consistencia semántica. `danger` usa rojo sólido.
+
+**Razón:**  
+Experiencia de usuario más profesional y coherente con estándares de SaaS modernos. El `scale` en contenedores resulta distracting y poco natural en elementos que no son de acción puntual.
+
+**Impacto:**  
+- Todos los componentes y vistas deben usar tokens semánticos (`bg-accent`, `text-accent`, `bg-surface`, `border-subtle`, etc.).
+- Se ha unificado el estilo visual eliminando colores hardcodeados (`amber-*`, `slate-*`) incluso de secciones como `TermsPage` y chat Copilot, para garantizar que respondan al tema global (claro/oscuro y acentos).
+- Cualquier nuevo modal de confirmación debe seguir el patrón de colores sólidos de `ConfirmModal`.
+

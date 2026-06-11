@@ -52,32 +52,32 @@ export const AIAssistantPanel = ({ isOpen, onClose }: { isOpen: boolean; onClose
             {isOpen && <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300" onClick={onClose} />}
 
             {/* Panel lateral que se desliza */}
-            <div className={`fixed inset-y-0 right-0 z-50 flex w-full sm:w-96 flex-col border-l border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 shadow-2xl transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed inset-y-0 right-0 z-50 flex w-full sm:w-96 flex-col border-l border-border-subtle bg-surface shadow-2xl transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
 
                 {/* Cabecera */}
-                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900-elevated p-5 text-slate-900 dark:text-slate-50">
+                <div className="flex items-center justify-between border-b border-border-subtle bg-surface p-5 text-foreground">
                     <h3 className="font-display font-semibold text-lg flex items-center gap-2">
-                        <span className="text-amber-600 dark:text-amber-500">✨</span> NodePay Copilot
+                        <span className="text-accent">✨</span> NodePay Copilot
                     </h3>
-                    <button onClick={onClose} className="rounded-full p-2 hover:bg-white/5 transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-slate-50 outline-none focus-visible:ring-2 focus-visible:ring-amber-500">✕</button>
+                    <button onClick={onClose} className="rounded-full p-2 hover:bg-surface-elevated transition-colors text-muted-foreground hover:text-foreground outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer">✕</button>
                 </div>
 
                 {/* Selector de Modo (RAG vs SQL) */}
-                <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900-elevated p-3 gap-2">
-                    <button onClick={() => setMode('rag')} className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ${mode === 'rag' ? 'bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 shadow-glow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-white/5'}`}>Terms (RAG)</button>
-                    <button onClick={() => setMode('sql')} className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ${mode === 'sql' ? 'bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 shadow-glow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-white/5'}`}>Data (SQL)</button>
+                <div className="flex border-b border-border-subtle bg-surface p-3 gap-2">
+                    <button onClick={() => setMode('rag')} className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer ${mode === 'rag' ? 'bg-accent/10 border border-accent/20 text-accent shadow-glow-sm' : 'text-muted-foreground hover:bg-surface-elevated'}`}>Terms (RAG)</button>
+                    <button onClick={() => setMode('sql')} className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer ${mode === 'sql' ? 'bg-accent/10 border border-accent/20 text-accent shadow-glow-sm' : 'text-muted-foreground hover:bg-surface-elevated'}`}>Data (SQL)</button>
                 </div>
 
                 {/* Área de Mensajes */}
-                <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-slate-50 dark:bg-slate-900">
+                <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-surface">
                     {messages.length === 0 && (
-                        <div className="mt-10 text-center text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900-elevated p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <div className="mt-10 text-center text-sm text-muted-foreground bg-surface-elevated p-6 rounded-xl border border-border-subtle">
                             {mode === 'rag' ? 'Ask me about NodePay rules and regulations.' : 'Ask me about active users, total balances or statistics.'}
                         </div>
                     )}
                     {messages.map((m) => (
                         <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-[85%] rounded-2xl px-5 py-3 text-sm ${m.role === 'user' ? 'bg-amber-500/15 text-amber-600 dark:text-amber-500 border border-amber-500/20' : 'glass-card'}`}>
+                            <div className={`max-w-[85%] rounded-2xl px-5 py-3 text-sm ${m.role === 'user' ? 'bg-accent text-white shadow-glow-sm' : 'glass-card text-foreground'}`}>
                                 {m.text}
                             </div>
                         </div>
@@ -86,9 +86,9 @@ export const AIAssistantPanel = ({ isOpen, onClose }: { isOpen: boolean; onClose
                     {isPending && (
                         <div className="flex justify-start">
                             <div className="max-w-[85%] glass-card px-5 py-4 flex items-center space-x-2">
-                                <span className="h-2 w-2 rounded-full bg-amber-500/60 animate-pulse" style={{ animationDelay: '0ms' }}></span>
-                                <span className="h-2 w-2 rounded-full bg-amber-500/80 animate-pulse" style={{ animationDelay: '150ms' }}></span>
-                                <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" style={{ animationDelay: '300ms' }}></span>
+                                <span className="h-2 w-2 rounded-full bg-accent/60 animate-pulse" style={{ animationDelay: '0ms' }}></span>
+                                <span className="h-2 w-2 rounded-full bg-accent/80 animate-pulse" style={{ animationDelay: '150ms' }}></span>
+                                <span className="h-2 w-2 rounded-full bg-accent animate-pulse" style={{ animationDelay: '300ms' }}></span>
                             </div>
                         </div>
                     )}
@@ -96,7 +96,7 @@ export const AIAssistantPanel = ({ isOpen, onClose }: { isOpen: boolean; onClose
                 </div>
 
                 {/* Input Form */}
-                <form onSubmit={handleSubmit} className="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900-elevated p-5">
+                <form onSubmit={handleSubmit} className="border-t border-border-subtle bg-surface p-5">
                     <div className="relative flex items-center">
                         <input
                             type="text"
@@ -106,7 +106,7 @@ export const AIAssistantPanel = ({ isOpen, onClose }: { isOpen: boolean; onClose
                             className="input-glass w-full rounded-full pl-5 pr-12"
                             disabled={isPending}
                         />
-                        <button type="submit" disabled={isPending || !input.trim()} className="absolute right-2 flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-surface-elevated transition-all duration-200 hover:brightness-110 disabled:bg-slate-50 dark:bg-slate-900 disabled:text-slate-500 dark:text-slate-400 disabled:border disabled:border-slate-200 dark:border-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:ring-offset-slate-800">
+                        <button type="submit" disabled={isPending || !input.trim()} className="absolute right-2 flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white transition-all duration-200 hover:brightness-110 disabled:bg-surface-elevated disabled:text-muted-foreground disabled:border disabled:border-border-subtle outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
                         </button>
                     </div>

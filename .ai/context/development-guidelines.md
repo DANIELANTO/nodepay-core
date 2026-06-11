@@ -4,7 +4,9 @@
 
 ### Frontend (React/TypeScript)
 - Uso estricto de componentes funcionales con Hooks.
-- Estilos mediante **Tailwind CSS v4** (orientación a "Tech-Minimalist Design", Dark Mode, alto contraste, componentes tipo wireframe/glassmorphism).
+- Estilos mediante **Tailwind CSS v4** orientados al design system **SaaS Moderno Minimalista** (Inter, fondo gris claro `#F3F4F8`, acento azul-violeta `#4F46E5`). Admite modo claro y oscuro.
+- **Convención de hover:** `scale` en `:hover` está reservado **exclusivamente** para botones de acción puntual (FAB, submit). Nunca aplicar a contenedores, cards, tablas o barras de navegación.
+- **Acento del sistema y tokens:** `#4F46E5` (indigo-600) en modo claro, `#6366F1` (indigo-500) en modo oscuro. Usar tokens compartidos como `bg-accent`, `text-accent`, `bg-surface`, `border-subtle`. No usar colores hardcodeados como `amber-*` o `slate-*` en ningún componente visual del sistema.
 - Estado global: **Zustand** para aspectos sincrónicos de UI y Auth; **Redux Toolkit Query (RTK)** para caching, fetching y mutaciones del servidor.
 - TypeScript estricto. Interfaces/Types exportados preferiblemente.
 

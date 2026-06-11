@@ -11,7 +11,7 @@ import { UsersDesktopTable } from './UsersDesktopTable';
 /* ─── Loading state ─────────────────────────────────────── */
 const LoadingSpinner = () => (
     <div className="flex justify-center p-12">
-        <div className="h-9 w-9 animate-spin rounded-full border-4 border-amber-500 border-t-transparent shadow-glow-sm" />
+        <div className="h-9 w-9 animate-spin rounded-full border-4 border-accent border-t-transparent shadow-glow-sm" />
     </div>
 );
 
@@ -156,7 +156,7 @@ export const UsersTable = () => {
                             <button
                                 onClick={() => setPage(p => Math.max(1, p - 1))}
                                 disabled={response.page === 1}
-                                className="relative inline-flex items-center rounded-l-md px-3 py-2 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:bg-white/5 focus:z-20 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+                                className="relative inline-flex items-center rounded-l-md px-3 py-2 text-muted-foreground border border-border-subtle hover:bg-surface-elevated focus:z-20 outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 disabled:hover:bg-transparent transition-colors cursor-pointer"
                             >
                                 <span className="sr-only">Previous</span>
                                 <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -168,7 +168,7 @@ export const UsersTable = () => {
                                 <button
                                     key={i + 1}
                                     onClick={() => setPage(i + 1)}
-                                    className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold border border-slate-200 dark:border-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 transition-colors ${response.page === i + 1 ? 'z-10 bg-amber-500 text-[#0A0A0F] border-amber-500 hover:brightness-110 shadow-glow-sm' : 'text-slate-900 dark:text-slate-50 hover:bg-white/5 focus:z-20'}`}
+                                    className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold border border-border-subtle outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors cursor-pointer ${response.page === i + 1 ? 'z-10 bg-accent text-white border-accent hover:bg-accent-hover shadow-glow-sm' : 'text-foreground hover:bg-surface-elevated focus:z-20'}`}
                                 >
                                     {i + 1}
                                 </button>
@@ -177,7 +177,7 @@ export const UsersTable = () => {
                             <button
                                 onClick={() => setPage(p => Math.min(response.totalPages, p + 1))}
                                 disabled={response.page === response.totalPages}
-                                className="relative inline-flex items-center rounded-r-md px-3 py-2 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:bg-white/5 focus:z-20 outline-none focus-visible:ring-2 focus-visible:ring-amber-500 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+                                className="relative inline-flex items-center rounded-r-md px-3 py-2 text-muted-foreground border border-border-subtle hover:bg-surface-elevated focus:z-20 outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 disabled:hover:bg-transparent transition-colors cursor-pointer"
                             >
                                 <span className="sr-only">Next</span>
                                 <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

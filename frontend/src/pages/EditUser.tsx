@@ -31,7 +31,7 @@ export const EditUser = () => {
     if (isFetching) {
         return (
             <div className="flex justify-center p-8">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-amber-500 border-t-transparent shadow-glow-sm"></div>
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent shadow-glow-sm"></div>
             </div>
         );
     }

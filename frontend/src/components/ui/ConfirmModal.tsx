@@ -25,9 +25,9 @@ interface ConfirmModalProps {
 }
 
 const confirmBtnClasses: Record<ConfirmVariant, string> = {
-    danger: 'bg-red-900/40 text-red-400 border border-red-500/30 hover:bg-red-900/60 disabled:bg-red-900/20 disabled:text-red-400/50',
-    success: 'bg-green-900/40 text-green-400 border border-green-500/30 hover:bg-green-900/60 disabled:bg-green-900/20 disabled:text-green-400/50',
-    warning: 'bg-yellow-900/40 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-900/60 disabled:bg-yellow-900/20 disabled:text-yellow-400/50',
+    danger:  'bg-red-600 text-white hover:bg-red-700 disabled:bg-red-300 disabled:cursor-not-allowed cursor-pointer',
+    success: 'bg-indigo-600 text-white hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed cursor-pointer',
+    warning: 'bg-amber-500 text-white hover:bg-amber-600 disabled:bg-amber-300 disabled:cursor-not-allowed cursor-pointer',
 };
 
 export const ConfirmModal = ({

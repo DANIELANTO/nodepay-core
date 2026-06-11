@@ -100,7 +100,6 @@ export const TERMS_SECTIONS: TermsSection[] = [
 export const TERMS_METADATA = {
     lastUpdated: "March 2026",
     version: "2.0",
-    company: "NodePay S.A. de C.V.",
+    company: "NodePay",
     location: "San Salvador, El Salvador",
-    nit: "0614-XXXXXX-XXX-X",
 };
