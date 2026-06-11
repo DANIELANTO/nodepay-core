@@ -105,7 +105,7 @@
 
   /* ── Botón primario — azul-violeta, cursor-pointer ── */
   .btn-primary {
-    @apply bg-accent text-white font-medium rounded-lg px-6 py-3
+    @apply bg-accent text-white font-medium rounded-lg px-4 py-2.5 text-sm
            transition-all duration-200 border-none outline-none cursor-pointer;
   }
 
@@ -124,7 +124,7 @@
   /* ── Botón secundario — outline limpio, cursor-pointer ── */
   .btn-secondary {
     @apply bg-transparent text-foreground border border-border-hover
-           rounded-lg px-6 py-3 transition-all duration-200 cursor-pointer;
+           rounded-lg px-4 py-2.5 text-sm transition-all duration-200 cursor-pointer;
   }
 
   .btn-secondary:hover {

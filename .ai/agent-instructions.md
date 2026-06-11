@@ -14,8 +14,8 @@ Antes de modificar código en este proyecto, **DEBES LEER** estos archivos si es
 Antes de implementar una nueva feature, refactor, o cambio importante, debes revisar si existe una spec relacionada en la carpeta `.ai/specs/`.
 * **Si no existe una spec:** Debes crear una nueva usando `.ai/specs/spec-template.md`
 basándote en la solicitud del usuario, seguir los lineamientos de `.ai/specs/README.md`, y esperar validación si hay dudas.
-* **Toda implementación:** DEBE seguir la spec correspondiente paso a paso.
-* **Incompletitud:** Si durante la implementación descubres que la spec está incompleta (ej. falta un caso de borde), actualiza la spec antes de continuar escribiendo código.
+* **Toda implementación:** DEBE seguir la spec correspondiente paso a paso y valida lineamientos con `.ai/specs/README.md`.
+* **Incompletitud:** Si durante la implementación descubres que la spec está incompleta (ej. falta un caso de borde), actualiza la spec antes de continuar escribiendo código y valida lineamientos con `.ai/specs/README.md`.
 
 ## 3. Modificaciones Críticas
 Si un cambio requiere alterar la arquitectura, estructura de carpetas, responsabilidades de módulos, dependencias o implica nuevas decisiones técnicas críticas, **DEBES ACTUALIZAR TAMBIÉN:**

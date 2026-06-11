@@ -12,23 +12,23 @@ export const DashboardLayout = () => {
     const [isAIOpen, setIsAIOpen] = useState(false);
 
     return (
-        <div className="relative min-h-screen p-4 sm:p-8 overflow-hidden">
+        <div className="relative min-h-screen p-3 sm:px-5 sm:py-3 overflow-hidden flex flex-col">
             {/* Ambient Orbs */}
             <div className="fixed top-[-10%] right-[10%] w-[500px] h-[500px] rounded-full bg-indigo-500/5 blur-[150px] pointer-events-none z-0" />
             <div className="fixed bottom-[-10%] left-[5%] w-[400px] h-[400px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none z-0" />
 
-            <div className="mx-auto max-w-6xl relative z-10">
+            <div className="mx-auto w-full max-w-6xl relative z-10 flex flex-col flex-1 min-h-0">
 
                 {/* Header Global del Dashboard */}
-                <div className="mb-6 sm:mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between glass-card p-6 sm:p-8">
+                <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between glass-card p-4 sm:px-5 sm:py-3">
                     <div className="w-full sm:w-auto">
-                        <h1 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-slate-50">Administration Panel</h1>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 sm:mb-4 mt-2">Manage access and view NodePay regulations.</p>
+                        <h1 className="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-slate-50">Administration Panel</h1>
+                        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-3 sm:mb-2 mt-1">Manage access and view NodePay regulations.</p>
 
-                        <div className="flex space-x-6 sm:space-x-8 border-b border-border-subtle overflow-x-auto whitespace-nowrap pb-1">
+                        <div className="flex space-x-6 sm:space-x-8 border-b border-border-subtle overflow-x-auto whitespace-nowrap mt-6">
                             <Link
                                 to="/dashboard/users"
-                                className={`pb-3 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-accent ${location.pathname.includes('/users')
+                                className={`pb-2 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-accent ${location.pathname.includes('/users')
                                     ? 'border-accent text-accent'
                                     : 'border-transparent text-muted-foreground hover:border-border-hover hover:text-foreground'
                                     }`}
@@ -37,7 +37,7 @@ export const DashboardLayout = () => {
                             </Link>
                             <Link
                                 to="/dashboard/terms"
-                                className={`pb-3 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-accent ${location.pathname.includes('/terms')
+                                className={`pb-2 text-sm font-medium transition-all duration-200 border-b-2 outline-none focus-visible:text-accent ${location.pathname.includes('/terms')
                                     ? 'border-accent text-accent'
                                     : 'border-transparent text-muted-foreground hover:border-border-hover hover:text-foreground'
                                     }`}
@@ -56,11 +56,11 @@ export const DashboardLayout = () => {
                         >
                             {theme === 'dark' ? (
                                 <svg className="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             ) : (
                                 <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                                 </svg>
                             )}
                         </button>
@@ -75,7 +75,7 @@ export const DashboardLayout = () => {
                     </div>
                 </div>
 
-                <div className="mb-8">
+                <div className="mb-2 flex flex-col flex-1 min-h-0">
                     <Outlet />
                 </div>
             </div>

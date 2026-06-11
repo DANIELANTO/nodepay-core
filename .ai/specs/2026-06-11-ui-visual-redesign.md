@@ -2,7 +2,7 @@
 
 ## Estado
 
-**Activa** 🚧 (Reabierta y expandida el 2026-06-11)
+**Completada** ✅ (Iteraciones cerradas el 2026-06-11)
 
 ---
 
@@ -320,3 +320,49 @@ Archivos de contexto a actualizar post-implementación:
   - [ ] **CA-12:** El texto en la barra de búsqueda no se superpone con el icono de la lupa.
   - [ ] **CA-13:** Al realizar una búsqueda que no arroja resultados, la barra de búsqueda sigue visible y permite limpiar el filtro.
 - **Impacto en contexto o arquitectura:** Ninguno (cambio UI/UX a nivel componente).
+
+### Ampliación: Optimización de Densidad de Interfaz y Uso de Viewport
+- **Fecha:** 2026-06-11
+- **Motivo del cambio:**
+  - Las listas y tablas muestran pocos registros (~5) obligando a scroll innecesario en resoluciones comunes como 1920x1080 (viewport ~1432x793).
+  - Exceso de paddings (`py-5`, `p-8`) y márgenes (`mb-10`, `mt-8`) en `DashboardLayout`, `UsersTable` y `TermsPage` que rompen la densidad visual típica de un SaaS moderno (e.g. Linear, GitHub).
+- **Nuevo alcance:**
+  - Reducir paddings generales en `DashboardLayout.tsx` (`p-8` -> `p-6`, `mb-10` -> `mb-6`).
+  - Ajustar densidad de tabla en `UsersDesktopTable.tsx` (header `py-5` -> `py-3`, celdas `py-4` -> `py-2.5` o `py-3`).
+  - Ajustar márgenes en `UsersTable.tsx` y compresión de barra de búsqueda / paginación.
+  - Reducir altura del Header Banner en `TermsPage.tsx` (`py-12` -> `py-8`, `space-y-8` -> `space-y-6`).
+- **Archivos afectados:**
+  - `frontend/src/layouts/DashboardLayout.tsx`
+  - `frontend/src/components/users/UsersTable.tsx`
+  - `frontend/src/components/users/UsersDesktopTable.tsx`
+  - `frontend/src/pages/TermsPage.tsx`
+- **Criterios de aceptación:**
+  - [ ] **CA-14:** Las tablas de escritorio muestran más registros visibles sin requerir scroll (filas más compactas ~36-40px de alto).
+  - [ ] **CA-15:** El Layout general se siente más integrado, con márgenes consistentes y reducidos.
+  - [ ] **CA-16:** El header de Terms & Conditions consume significativamente menos espacio vertical sin perder legibilidad ni jerarquía.
+
+### Ampliación: Densidad Ultra-Compacta (Eficiencia de Viewport)
+- **Fecha:** 2026-06-11
+- **Motivo del cambio:**
+  - El usuario solicita un nivel superior de compacidad enfocado en herramientas de administración (SaaS) para evitar que parezca un landing page, asegurando que 5 usuarios, buscador y paginación quepan sobradamente en 1432x793.
+- **Nuevo alcance:**
+  - Reducir más el header de `DashboardLayout.tsx` (espaciado y altura).
+  - En `UsersTable`, integrar la paginación a la misma `glass-card` de la tabla en escritorio (fusionar contenedores).
+  - En `UsersDesktopTable`, reducir tamaño del Avatar (`md` a `sm`) y bajar el padding de filas a `py-2` y `py-2.5` en headers.
+  - En `TermsPage`, compactar aún más el Hero Banner y los espaciados de la tabla de contenidos e introducción.
+- **Impacto en contexto o arquitectura:** Ninguno (continuación de optimización visual).
+
+### Ampliación: Estabilidad de Layout y Altura Dinámica
+- **Fecha:** 2026-06-11
+- **Motivo del cambio:**
+  - El usuario solicita que la vista principal del dashboard se comporte como una aplicación de escritorio nativa, llenando el espacio vertical disponible y usando scroll interno en el cuerpo de la tabla, en lugar de scroll global de toda la página.
+  - Además, los botones se sentían demasiado grandes ("peso visual excesivo") en comparación a las proporciones esperadas en una interfaz de administración densa.
+- **Nuevo alcance:**
+  - `DashboardLayout.tsx`: Implementar `min-h-screen flex flex-col` y propagar el crecimiento con `flex-1 min-h-0` hacia las vistas internas.
+  - `UsersTable.tsx` / `UsersDesktopTable.tsx`: Configurar contenedores para ocupar `flex-1 min-h-0`, habilitando `overflow-auto` en la tabla y un header sticky (`sticky top-0`). El pie de paginación queda anclado en la parte inferior (`flex-shrink-0`).
+  - `index.css`: Reducir botones base `.btn-primary` y `.btn-secondary` (`px-6 py-3` → `px-4 py-2.5`, aplicando `text-sm`).
+  - `CreateUser.tsx`: Retirar anchos completos (`w-full`) en botones de formularios, moviéndolos a la derecha (`justify-end`) para reducir peso visual.
+- **Criterios de aceptación:**
+  - [x] **CA-17:** La tabla de usuarios llena el alto restante del viewport, manteniendo la paginación anclada abajo.
+  - [x] **CA-18:** Si los usuarios exceden el espacio de la tabla, el scroll se hace en el cuerpo de la tabla (`tbody`), no en la página entera.
+  - [x] **CA-19:** Los botones globales tienen una altura promedio de ~40-44px y los formularios lucen proporcionados.

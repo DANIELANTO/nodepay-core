@@ -57,18 +57,18 @@ export const CreateUser = () => {
                     />
                 </div>
 
-                <div className="flex gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+                <div className="flex justify-end gap-3 pt-6 border-t border-slate-200 dark:border-slate-800">
                     <button
                         type="button"
                         onClick={() => navigate('/dashboard/users')}
-                        className="w-full btn-secondary"
+                        className="btn-secondary"
                     >
                         Cancel
                     </button>
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full btn-primary disabled:opacity-50 disabled:hover:brightness-100 disabled:hover:shadow-none disabled:cursor-not-allowed"
+                        className="btn-primary disabled:opacity-50 disabled:hover:brightness-100 disabled:hover:shadow-none disabled:cursor-not-allowed"
                     >
                         {isLoading ? 'Creating...' : 'Create User'}
                     </button>

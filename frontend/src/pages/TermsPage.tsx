@@ -4,26 +4,26 @@ export const TermsPage = () => {
     return (
         <div className="relative z-10">
             {/* Header Banner */}
-            <div className="relative overflow-hidden glass-card mb-8">
+            <div className="relative overflow-hidden glass-card mb-4">
                 <div
                     className="absolute inset-0 opacity-[0.02]"
                     style={{
                         backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.3) 20px, rgba(255,255,255,0.3) 22px)`,
                     }}
                 />
-                <div className="relative px-6 sm:px-10 py-10 sm:py-12 border-b border-border-subtle">
-                    <div className="flex items-center gap-3 mb-4">
-                        <span className="text-2xl">🇸🇻</span>
-                        <span className="text-accent text-sm font-medium tracking-widest uppercase">
+                <div className="relative px-5 sm:px-8 py-5 sm:py-6 border-b border-border-subtle">
+                    <div className="flex items-center gap-3 mb-3">
+                        <span className="text-xl sm:text-2xl">🇸🇻</span>
+                        <span className="text-accent text-xs sm:text-sm font-medium tracking-widest uppercase">
                             NodePay · Republic of El Salvador
                         </span>
                     </div>
-                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-foreground mb-3">Terms and Conditions</h1>
-                    <p className="text-muted-foreground text-sm max-w-2xl">
+                    <h1 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-2">Terms and Conditions</h1>
+                    <p className="text-muted-foreground text-xs sm:text-sm max-w-2xl">
                         Binding legal document regulating the use of NodePay's digital financial services,
                         drafted in accordance with the laws of the Republic of El Salvador.
                     </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
+                    <div className="mt-3 flex flex-wrap gap-2 sm:gap-3">
                         {[
                             { icon: "📅", label: `Effective since ${TERMS_METADATA.lastUpdated}` },
                             { icon: "⚖️", label: "Jurisdiction: El Salvador" },
@@ -42,11 +42,11 @@ export const TermsPage = () => {
             </div>
 
             {/* Main Content */}
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-4xl mx-auto space-y-4">
 
                 {/* Intro Box */}
-                <div className="rounded-xl border border-accent/20 bg-accent/5 p-6 backdrop-blur-sm shadow-glow-sm">
-                    <p className="text-foreground text-sm leading-relaxed">
+                <div className="rounded-xl border border-accent/20 bg-accent/5 p-3 sm:p-4 backdrop-blur-sm shadow-glow-sm">
+                    <p className="text-foreground text-xs sm:text-sm leading-relaxed">
                         <strong className="text-accent">Important:</strong> Welcome to NodePay. By using our digital financial services,
                         you agree to be bound by the following Terms and Conditions in their entirety. We recommend
                         that you read this document carefully. If you have any questions, you can consult our AI assistant
@@ -55,7 +55,7 @@ export const TermsPage = () => {
                 </div>
 
                 {/* Table of Contents */}
-                <div className="glass-card p-6 sm:p-8">
+                <div className="glass-card p-4 sm:p-5">
                     <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest text-muted-foreground border-b border-border-subtle pb-4">
                         Table of Contents
                     </h2>
@@ -76,24 +76,24 @@ export const TermsPage = () => {
                 </div>
 
                 {/* Sections */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     {TERMS_SECTIONS.map((section) => (
                         <div
                             key={section.id}
                             id={`section-${section.id}`}
                             className="glass-card overflow-hidden scroll-mt-24"
                         >
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-b border-border-subtle bg-surface-elevated px-6 py-4">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-3 border-b border-border-subtle bg-surface-elevated px-4 py-3">
                                 <div
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-mono font-bold bg-accent text-white shadow-glow-sm"
+                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-mono font-bold bg-accent text-white shadow-glow-sm"
                                 >
                                     {section.id}
                                 </div>
-                                <h2 className="font-display font-semibold text-lg text-foreground">{section.title}</h2>
+                                <h2 className="font-display font-semibold text-base sm:text-lg text-foreground">{section.title}</h2>
                             </div>
-                            <div className="px-6 py-6 space-y-5">
+                            <div className="px-4 py-4 space-y-3">
                                 {section.content.map((paragraph, pIdx) => (
-                                    <p key={pIdx} className="text-sm leading-relaxed text-muted-foreground">
+                                    <p key={pIdx} className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
                                         {paragraph}
                                     </p>
                                 ))}
