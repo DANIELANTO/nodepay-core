@@ -1,76 +1,76 @@
-# Spec: [Nombre de la feature o cambio]
+# Spec: [Feature or Change Name]
 
-## Estado
+## Status
 
-Propuesta | En progreso | Implementada | Cancelada
+Proposed | In Progress | Implemented | Cancelled
 
-## Contexto
+## Context
 
-Explica por qué se necesita este cambio. (Ej. "El usuario solicitó..." o "El RAG falla porque...").
+Explain why this change is needed (e.g., "The user requested..." or "RAG fails because...").
 
-## Objetivo
+## Goal
 
-Describe qué se quiere lograr.
+Describe what needs to be achieved.
 
-## Alcance
+## Scope
 
-Incluye qué entra en el cambio.
+Include what is covered by the change.
 
-## Fuera de alcance
+## Out of Scope
 
-Incluye qué NO se debe modificar o no forma parte de este sprint/tarea.
+Include what should NOT be modified or is not part of this sprint/task.
 
-## Requisitos funcionales
+## Functional Requirements
 
-- [ ] Requisito 1
-- [ ] Requisito 2
-- [ ] Requisito 3
+- [ ] Requirement 1
+- [ ] Requirement 2
+- [ ] Requirement 3
 
-## Requisitos técnicos
+## Technical Requirements
 
-- [ ] Requisito técnico 1
-- [ ] Requisito técnico 2
+- [ ] Technical Requirement 1
+- [ ] Technical Requirement 2
 
-## Archivos o módulos afectados
+## Affected Files or Modules
 
-Lista los archivos, carpetas o módulos que probablemente serán modificados.
+List files, folders, or modules that will likely be modified.
 - `/src/services/...`
 - `/frontend/src/components/...`
 
-## Diseño propuesto
+## Proposed Design
 
-Explica la solución propuesta a nivel técnico. ¿Cómo se va a construir? Muestra fragmentos de código estructural si es necesario.
+Explain the proposed technical solution. How will it be built? Show snippets of structural code if necessary.
 
-## Impacto en arquitectura
+## Impact on Architecture
 
-Indica si este cambio afecta la arquitectura del proyecto.
+Indicate if this change affects the project's architecture.
 
-Si afecta la arquitectura o la estructura base, recuerda actualizar:
+If it affects the architecture or base structure, remember to update:
 - `.ai/context/architecture-design.md`
 - `.ai/context/file-map.md`
 - `.ai/context/decisions.md`
-- `.ai/context/project-context.md`, si aplica
+- `.ai/context/project-context.md`, if applicable
 
-## Plan de implementación
+## Implementation Plan
 
-1. Paso 1
-2. Paso 2
-3. Paso 3
+1. Step 1
+2. Step 2
+3. Step 3
 
-## Criterios de aceptación
+## Acceptance Criteria
 
-- [ ] Criterio 1
-- [ ] Criterio 2
-- [ ] Criterio 3
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
 
-## Pruebas sugeridas
+## Suggested Testing
 
-Describe cómo validar que el cambio funciona correctamente (ej. "Entrar a la app, hacer clic en X y verificar Y").
+Describe how to validate that the change works correctly (e.g., "Log in to the app, click X and verify Y").
 
-## Riesgos
+## Risks
 
-Lista riesgos técnicos, de negocio o de compatibilidad (ej. "Puede romper el RAG si se cambia el esquema de BD").
+List technical, business, or compatibility risks (e.g., "May break RAG if DB schema changes").
 
-## Notas para futuros agentes
+## Notes for Future Agents
 
-Incluye cualquier información que pueda ser útil para otro LLM o desarrollador que toque este código en el futuro.
+Include any information that might be useful for another LLM or developer working on this code in the future.

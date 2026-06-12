@@ -1,55 +1,55 @@
-# Guías de Desarrollo (Development Guidelines)
+# Development Guidelines
 
-## Convenciones de Código Detectadas
+## Detected Code Conventions
 
 ### Frontend (React/TypeScript)
-- Uso estricto de componentes funcionales con Hooks.
-- Estilos mediante **Tailwind CSS v4** orientados al design system **SaaS Moderno Minimalista** (Inter, fondo gris claro `#F3F4F8`, acento azul-violeta `#4F46E5`). Admite modo claro y oscuro.
-- **Convención de hover:** `scale` en `:hover` está reservado **exclusivamente** para botones de acción puntual (FAB, submit). Nunca aplicar a contenedores, cards, tablas o barras de navegación.
-- **Acento del sistema y tokens:** `#4F46E5` (indigo-600) en modo claro, `#6366F1` (indigo-500) en modo oscuro. Usar tokens compartidos como `bg-accent`, `text-accent`, `bg-surface`, `border-subtle`. No usar colores hardcodeados como `amber-*` o `slate-*` en ningún componente visual del sistema.
-- Estado global: **Zustand** para aspectos sincrónicos de UI y Auth; **Redux Toolkit Query (RTK)** para caching, fetching y mutaciones del servidor.
-- TypeScript estricto. Interfaces/Types exportados preferiblemente.
+- Strict use of functional components with Hooks.
+- Styling via **Tailwind CSS v4** oriented toward a **Minimalist Modern SaaS** design system (Inter font, very light gray background `#F3F4F8`, blue-violet accent `#4F46E5`). Supports both light and dark modes.
+- **Hover Convention:** `scale` on `:hover` is reserved **exclusively** for targeted action buttons (FAB, submit). Never apply to containers, cards, tables, or navigation bars.
+- **System Accent and Tokens:** `#4F46E5` (indigo-600) in light mode, `#6366F1` (indigo-500) in dark mode. Use shared tokens like `bg-accent`, `text-accent`, `bg-surface`, `border-subtle`. Do not use hardcoded colors like `amber-*` or `slate-*` in any visual component of the system.
+- Global State: **Zustand** for synchronous UI and Auth aspects; **Redux Toolkit Query (RTK Query)** for caching, fetching, and server mutations.
+- Strict TypeScript. Exported interfaces/types are preferred.
 
 ### Backend (Node.js/TypeScript)
-- Implementación de **Domain-Driven Design (DDD)** simplificado.
-- Uso del **Repository Pattern**: nunca interactuar con Prisma directamente desde un Controller o Service de negocio general, siempre a través del contrato (`IUserRepository`, etc.).
-- Modularidad con importaciones ESM (uso de extensiones o resolución correcta de módulos).
-- Devolución coherente de respuestas API (probablemente formato JSON estandarizado).
+- Simplified **Domain-Driven Design (DDD)** implementation.
+- Use of the **Repository Pattern**: never interact with Prisma directly from a Controller or general business Service, always go through the contract (`IUserRepository`, etc.).
+- Modularity using ESM imports (proper extension use or correct module resolution).
+- Coherent API response returns (standardized JSON format).
 
 ### AI Service (Python/FastAPI)
-- Uso de anotaciones de tipos nativas de Python (`typing`).
-- Código asíncrono (`async def`) para endpoints de FastAPI.
-- Manejo cuidadoso de las sesiones de base de datos y memoria de FAISS.
+- Use of native Python type hints (`typing`).
+- Asynchronous code (`async def`) for FastAPI endpoints.
+- Careful management of database sessions and FAISS memory.
 
-## Cómo Agregar Nuevas Features
+## How to Add New Features
 
-1. **Requisito Obligatorio:** Antes de implementar una feature o cambio importante, primero debe existir una spec en `.ai/specs/`. Si la spec no existe, el agente o desarrollador debe crearla o solicitar la información necesaria para completarla.
-2. Identificar qué microservicio abarca la nueva feature.
-3. Si impacta BD, actualizar `schema.prisma`, crear migración e implementar la interfaz en la capa de Repository.
-4. Crear la lógica de negocio en la capa de `services/`.
-5. Exponer a través de `controllers/` y `routes/`.
-6. En Frontend, definir el endpoint en RTK Query API slice, o crear un custom hook. Integrar visualmente respetando los lineamientos "Tech-Minimalist".
+1. **Mandatory Requirement:** Before implementing a feature or major change, a spec must first exist in `.ai/specs/`. If the spec does not exist, the agent or developer must create it or request the necessary information to complete it.
+2. Identify which microservice the new feature belongs to.
+3. If it impacts the DB, update `schema.prisma`, create a migration, and implement the interface in the Repository layer.
+4. Create the business logic in the `services/` layer.
+5. Expose the functionality through `controllers/` and `routes/`.
+6. On Frontend, define the endpoint in the RTK Query API slice, or create a custom hook. Integrate visually, respecting the "Tech-Minimalist" guidelines.
 
-## Cómo Modificar Código Existente
+## How to Modify Existing Code
 
-- **Respeta la inmutabilidad de transacciones:** Nunca agregues lógica para hacer `UPDATE` a una transacción financiera. Las transacciones deben crearse y quedar estáticas.
-- **Evita romper la arquitectura:** No llames directamente a BD en los controladores. No mezcles lógica de UI con lógica de negocio.
-- **Mantener el tipado:** Asegúrate de que las interfaces TypeScript / Tipos de Python coincidan.
+- **Respect Transaction Immutability:** Never add logic to `UPDATE` a financial transaction. Transactions must be created and remain static.
+- **Avoid Breaking the Architecture:** Do not call the DB directly from controllers. Do not mix UI logic with business logic.
+- **Maintain Typing:** Ensure that TypeScript interfaces and Python types match.
 
-## Flujo de Trabajo y Automatización
+## Workflow and Automation
 
-> **REGLA ESTRICTA DE ESPECIFICACIONES:**
-> Toda modificación, refactor, o feature debe seguir el **Spec Driven Design / Spec Driven Development**. Revisa la carpeta `.ai/specs/` antes de tocar una línea de código.
+> **STRICT SPECIFICATION RULE:**
+> Every modification, refactor, or feature must follow **Spec Driven Design / Spec Driven Development**. Review the `.ai/specs/` folder before touching a single line of code.
 
-## Manejo de Errores
-- En Node: Usar middlewares de manejo de errores globales o responder con códigos de estado HTTP correctos (400 para reglas de negocio rotas, 401/403 para Auth, 404 No encontrado, 500 error del servidor).
-- En Python: Elevar `HTTPException` de FastAPI.
-- En React: Mostrar feedback visual al usuario a través de `react-hot-toast` o componentes similares para notificar fallos.
+## Error Handling
+- In Node: Use global error handling middleware or respond with correct HTTP status codes (400 for broken business rules, 401/403 for Auth, 404 Not Found, 500 server error).
+- In Python: Raise FastAPI `HTTPException`.
+- In React: Show visual feedback to the user using `react-hot-toast` or similar components to notify failures.
 
-## Reglas para Mantener Actualizado el Harness (.ai/)
+## Rules for Keeping the Harness (.ai/) Updated
 
-El AI Development Harness no es estático. Debe actualizarse en caso de:
-- Nueva tecnología, framework o patrón añadido al stack.
-- Modificaciones en el flujo de los servicios.
-- Alteraciones estructurales (archivos o carpetas nuevas).
-- Cualquier cambio que amerite explicar a futuros agentes o desarrolladores *por qué* y *cómo* funciona una pieza del sistema.
+The AI Development Harness is not static. It must be updated in case of:
+- A new technology, framework, or pattern added to the stack.
+- Modifications in service flows.
+- Structural alterations (new files or folders).
+- Any change that warrants explaining to future agents or developers *why* and *how* a part of the system works.

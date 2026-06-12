@@ -1,138 +1,137 @@
 # Spec: UI Visual Redesign — Hover Effects, Button Styles & Theme Overhaul
 
-## Estado
+## Status
 
-**Completada** ✅ (Iteraciones cerradas el 2026-06-11)
-
----
-
-## Contexto
-
-El usuario ha identificado tres categorías de problemas visuales en el dashboard:
-
-1. **Escala excesiva en hover:** El efecto `scale-[1.02]` está aplicado de forma global en `.glass-card:hover`, lo que genera una sensación de "rebote" incómodo en elementos que no deberían escalar: las tarjetas de usuario (mobile), la tabla de escritorio, la barra de paginación y el encabezado del panel (`Administration Panel` + botones de tema/logout).
-
-2. **Botones con hover poco natural:** Los botones carecen de `cursor: pointer`, lo que hace que el cursor del mouse no cambie al pasar sobre ellos, rompiendo una convención básica de UX. Además, el botón de confirmación dentro de `ConfirmModal` (para enable/disable usuario) usa estilos de fondo oscuro semi-transparente (`bg-green-900/40`, `bg-red-900/40`) que lucen inconsistentes en modo claro y no comunican claramente la acción.
-
-3. **Tema general desactualizado:** La paleta actual usa fondo oscuro (`#0A0A0F` dark, `#F8FAFC` light) con acento ámbar (`#F59E0B`). El usuario solicita migrar a un tema SaaS moderno minimalista con fondo gris claro `#F3F4F8`, acento azul-violeta `#4F46E5`, tipografía Inter/SF Pro, tabla limpia, y modales tipo drawer.
+**Completed** ✅ (Iterations closed on 2026-06-11)
 
 ---
 
-## Objetivo
+## Context
 
-1. Eliminar `scale` en hover de elementos contenedores (cards, tabla, paginación, header). Reservar `scale` solo para micro-interacciones de botones de acción puntual (ej: FAB de AI).
-2. Añadir `cursor-pointer` a todos los botones y elementos interactivos.
-3. Rediseñar el botón de confirmación del `ConfirmModal` con colores sólidos y semánticos que funcionen correctamente en modo claro y oscuro.
-4. Migrar el sistema de tokens de color y tipografía al nuevo tema SaaS minimalista descrito por el usuario.
-5. Asegurar que la tabla, el header y los modales adopten el nuevo lenguaje visual de forma coherente.
-6. Aplicar el mismo lenguaje visual (colores, fondos, tipografía, bordes, modales) a la sección de chat "NodePay Copilot" y la sección de "Terms and Conditions".
-7. Identificar y extraer estilos, componentes o tokens compartidos para evitar la duplicación de código visual entre distintas vistas.
+The user identified three categories of visual issues on the dashboard:
 
----
+1. **Excessive scale on hover:** The `scale-[1.02]` effect was applied globally to `.glass-card:hover`, creating an uncomfortable "bounce" effect on elements that should not scale: user cards (mobile), the desktop table, the pagination bar, and the panel header (`Administration Panel` + theme/logout buttons).
 
-## Alcance
+2. **Unnatural button hovers:** Buttons lacked `cursor: pointer`, preventing the mouse cursor from changing to a hand pointer when hovering over them, breaking a basic UX convention. Additionally, the confirmation button in `ConfirmModal` (for enabling/disabling users) used semi-transparent dark background styles (`bg-green-900/40`, `bg-red-900/40`) that looked inconsistent in light mode and failed to clearly communicate the action.
 
-- `frontend/src/index.css`: tokens de color, tipografía, utilidades `.glass-card`, `.btn-primary`, `.btn-secondary`, `.input-glass`.
-- `frontend/src/layouts/DashboardLayout.tsx`: header, botones de tema y logout.
-- `frontend/src/components/ui/ConfirmModal.tsx`: botón de confirmación (variantes danger/success/warning).
-- `frontend/src/components/users/UsersDesktopTable.tsx`: tabla de escritorio (hover de filas).
-- `frontend/src/components/users/UserCard.tsx`: tarjeta mobile (hover de card).
-- `frontend/src/components/users/UsersTable.tsx`: paginación (hover de botones de página).
-- `frontend/src/components/ai/AIAssistantPanel.tsx` (u otros componentes de la sección chat Copilot).
-- `frontend/src/components/terms/TermsAndConditions.tsx` (u otros archivos de términos y condiciones).
-- Creación de componentes UI compartidos (ej. un modal base, un panel base) si amerita.
+3. **Outdated general theme:** The previous palette used a dark background (`#0A0A0F` dark, `#F8FAFC` light) with an amber accent (`#F59E0B`). The user requested migrating to a modern minimalist SaaS theme with a light gray background `#F3F4F8`, a blue-violet accent `#4F46E5`, Inter/SF Pro typography, a clean table, and drawer-style modals.
 
 ---
 
-## Fuera de alcance
+## Goal
 
-- Lógica de negocio profunda, RTK Query, Zustand stores.
-- Routing y navegación principales.
+1. Remove `scale` on hover from container elements (cards, table, pagination, header). Reserve `scale` exclusively for micro-interactions on targeted action buttons (e.g., AI FAB).
+2. Add `cursor-pointer` to all buttons and interactive elements.
+3. Redesign the confirmation button in `ConfirmModal` with solid, semantic colors that work correctly in both light and dark modes.
+4. Migrate the color token system and typography to the new minimalist SaaS theme described by the user.
+5. Ensure the table, header, and modals adopt the new visual language consistently.
+6. Apply the same visual language (colors, backgrounds, typography, borders, modals) to the "NodePay Copilot" chat panel and the "Terms and Conditions" section.
+7. Identify and extract shared styles, components, or tokens to avoid duplicating visual code across different views.
+
+---
+
+## Scope
+
+- `frontend/src/index.css`: color tokens, typography, utilities `.glass-card`, `.btn-primary`, `.btn-secondary`, `.input-glass`.
+- `frontend/src/layouts/DashboardLayout.tsx`: header, theme and logout buttons.
+- `frontend/src/components/ui/ConfirmModal.tsx`: confirmation button (danger/success/warning variants).
+- `frontend/src/components/users/UsersDesktopTable.tsx`: desktop table (row hover).
+- `frontend/src/components/users/UserCard.tsx`: mobile card hover.
+- `frontend/src/components/users/UsersTable.tsx`: pagination hover.
+- `frontend/src/components/ai/*` (or other components of the Copilot chat section).
+- `frontend/src/components/terms/*` (or other terms and conditions files).
+- Creation of shared UI components (e.g., a base modal, base panel) if warranted.
+
+---
+
+## Out of Scope
+
+- Core business logic, RTK Query, Zustand stores.
+- Main routing and navigation.
 - Backend (Node.js, Python).
-- Backend (Node.js, Python).
-- Funcionalidad del toggle de tema (solo se actualiza su apariencia).
-- Creación de un sidebar lateral (el layout actual de topbar se mantiene).
+- Theme toggle functionality (only its appearance is updated).
+- Creation of a sidebar (the current topbar layout remains).
 
 ---
 
-## Requisitos funcionales
+## Functional Requirements
 
-- [ ] **RF-01:** Los elementos contenedores (`.glass-card` en header, tabla, paginación, cards mobile) **NO** deben aplicar `scale` en `:hover`. El efecto debe limitarse a cambio de borde, sombra o fondo.
-- [ ] **RF-02:** Todos los `<button>` y `<a>` interactivos deben mostrar `cursor: pointer` al hacer hover.
-- [ ] **RF-03:** El botón de confirmación en `ConfirmModal` para variante `success` debe usar un color azul-violeta sólido (`#4F46E5`) legible tanto en modo claro como oscuro.
-- [ ] **RF-04:** El botón de confirmación para variante `danger` debe usar rojo sólido legible, no el fondo semi-transparente oscuro actual.
-- [ ] **RF-05:** El fondo general de la aplicación debe cambiar a `#F3F4F8` (gris claro) en modo claro.
-- [ ] **RF-06:** El acento principal debe cambiar de ámbar `#F59E0B` a azul-violeta `#4F46E5`.
-- [ ] **RF-07:** La tipografía principal debe ser **Inter** (ya importada) con fallback `system-ui`. Se elimina `Space Grotesk` como fuente de headings.
-- [ ] **RF-08:** Los headers de la tabla deben verse pequeños, en mayúsculas, con color gris secundario y sin líneas pesadas.
-- [ ] **RF-09:** Las filas de la tabla deben tener una altura entre 48–56px con `hover` suave de fondo, sin escala.
-- [ ] **RF-10:** Los modales deben usar overlay oscuro semitransparente con blur, y el panel de contenido con `border-radius: 14px` y sombra suave (no glassmorphism oscuro).
-- [ ] **RF-11:** El panel de chat "NodePay Copilot" debe seguir la misma estética minimalista (fondo coherente, inputs limpios estilo `input-glass`, burbujas de chat con colores de la paleta principal/superficies).
-- [ ] **RF-12:** La sección de "Terms and Conditions" debe lucir integrada y usar la tipografía `Inter`, aplicando los tokens de texto, fondos de contenedores y modales de la nueva UI.
-
----
-
-## Requisitos técnicos
-
-- [ ] **RT-01:** Los cambios de tokens deben realizarse en `@layer base` dentro de `index.css`, manteniendo la estructura `@theme` de Tailwind v4.
-- [ ] **RT-02:** El nuevo acento `#4F46E5` debe generar sus variantes de `--accent-hover-color` (`#4338CA`), glow shadows y ring colors de forma consistente.
-- [ ] **RT-03:** La clase `.glass-card` debe redefinirse SIN `backdrop-blur` pesado y SIN `scale` en hover. Nuevo estilo: fondo blanco sólido, borde `#E5E7EB`, radio `16px`, sombra `0 1px 4px rgba(0,0,0,0.06)`, hover con sombra levemente más pronunciada y borde `#D1D5DB`.
-- [ ] **RT-04:** Las clases `.btn-primary` y `.btn-secondary` deben incluir `cursor-pointer` explícitamente.
-- [ ] **RT-05:** `ConfirmModal` debe reemplazar `confirmBtnClasses` con colores semánticos sólidos compatibles con ambos temas.
-- [ ] **RT-06:** Se debe mantener compatibilidad con el modo oscuro (`.dark`). Los tokens oscuros se actualizan en conjunto para reflejar el nuevo tema (superficie oscura más neutra, acento azul-violeta).
+- [ ] **FR-01:** Container elements (`.glass-card` in header, table, pagination, mobile cards) **MUST NOT** apply `scale` on `:hover`. The effect should be limited to border, shadow, or background changes.
+- [ ] **FR-02:** All interactive `<button>` and `<a>` elements must show `cursor: pointer` on hover.
+- [ ] **FR-03:** The confirmation button in `ConfirmModal` for the `success` variant must use a solid blue-violet color (`#4F46E5`) legible in both light and dark modes.
+- [ ] **FR-04:** The confirmation button for the `danger` variant must use solid red, rather than the current semi-transparent dark background.
+- [ ] **FR-05:** The general background of the application must change to `#F3F4F8` (light gray) in light mode.
+- [ ] **FR-06:** The primary accent must change from amber `#F59E0B` to blue-violet `#4F46E5`.
+- [ ] **FR-07:** The primary typography must be **Inter** (already imported) with a `system-ui` fallback. `Space Grotesk` is removed as a heading font.
+- [ ] **FR-08:** Table headers must look small, in uppercase, with a secondary gray color and no heavy borders.
+- [ ] **FR-09:** Table rows must have a height between 48–56px with a smooth background `hover`, without scale.
+- [ ] **FR-10:** Modals must use a semi-transparent dark overlay with blur, and the content panel must have `border-radius: 14px` and a soft shadow (no dark glassmorphism).
+- [ ] **FR-11:** The "NodePay Copilot" chat panel must follow the same minimalist aesthetic (consistent background, clean `input-glass` style inputs, chat bubbles using colors from the main palette/surfaces).
+- [ ] **FR-12:** The "Terms and Conditions" section must look integrated and use `Inter` typography, applying the text tokens, container backgrounds, and modals of the new UI.
 
 ---
 
-## Archivos o módulos afectados
+## Technical Requirements
+
+- [ ] **TR-01:** Token changes must be made in `@layer base` inside `index.css`, maintaining the `@theme` structure of Tailwind v4.
+- [ ] **TR-02:** The new accent `#4F46E5` must consistently generate its `--accent-hover-color` (`#4338CA`) variants, glow shadows, and ring colors.
+- [ ] **TR-03:** The `.glass-card` class must be redefined WITHOUT heavy `backdrop-blur` and WITHOUT `scale` on hover. New style: solid white background, `#E5E7EB` border, `16px` radius, `0 1px 4px rgba(0,0,0,0.06)` shadow, hover with slightly more pronounced shadow and `#D1D5DB` border.
+- [ ] **TR-04:** The `.btn-primary` and `.btn-secondary` classes must explicitly include `cursor-pointer`.
+- [ ] **TR-05:** `ConfirmModal` must replace `confirmBtnClasses` with solid semantic colors compatible with both themes.
+- [ ] **TR-06:** Compatibility with dark mode (`.dark`) must be maintained. Dark tokens are updated collectively to reflect the new theme (more neutral dark surface, blue-violet accent).
+
+---
+
+## Affected Files or Modules
 
 ```
-frontend/src/index.css                              ← Tokens + utilidades globales
-frontend/src/layouts/DashboardLayout.tsx            ← Header + botones de controles
-frontend/src/components/ui/ConfirmModal.tsx         ← Botón de confirmación
-frontend/src/components/users/UsersDesktopTable.tsx ← Hover de filas tabla
-frontend/src/components/users/UserCard.tsx          ← Hover de card mobile
-frontend/src/components/users/UsersTable.tsx        ← Hover de paginación
-frontend/src/components/ai/*                        ← Componentes de Copilot
-frontend/src/components/terms/*                     ← Componentes de Terms
+frontend/src/index.css                              ← Global tokens + utilities
+frontend/src/layouts/DashboardLayout.tsx            ← Header + control buttons
+frontend/src/components/ui/ConfirmModal.tsx         ← Confirmation button
+frontend/src/components/users/UsersDesktopTable.tsx ← Table row hover
+frontend/src/components/users/UserCard.tsx          ← Mobile card hover
+frontend/src/components/users/UsersTable.tsx        ← Pagination hover
+frontend/src/components/ai/*                        ← Copilot components
+frontend/src/components/terms/*                     ← Terms components
 ```
 
 ---
 
-## Diseño propuesto
+## Proposed Design
 
-### 1. Nuevos tokens de color (`:root` — modo claro)
+### 1. New Color Tokens (`:root` — light mode)
 
 ```css
 :root {
   color-scheme: light;
-  --bg-color: #F3F4F8;               /* Fondo general gris muy claro */
-  --surface-color: #FFFFFF;           /* Contenedor principal blanco */
-  --surface-elevated-color: #F9FAFB; /* Superficies secundarias */
-  --fg-color: #111827;               /* Texto principal */
-  --muted-fg-color: #6B7280;         /* Texto secundario */
-  --accent-color: #4F46E5;           /* Azul-violeta */
-  --accent-hover-color: #4338CA;     /* Azul-violeta hover */
-  --border-subtle-color: #E5E7EB;    /* Borde estándar */
-  --border-hover-color: #D1D5DB;     /* Borde hover */
-  --card-bg-color: #FFFFFF;          /* Card fondo sólido */
-  --card-bg-hover-color: #F9FAFB;    /* Card hover fondo */
+  --bg-color: #F3F4F8;               /* Very light gray general background */
+  --surface-color: #FFFFFF;           /* Main white container */
+  --surface-elevated-color: #F9FAFB; /* Secondary surfaces */
+  --fg-color: #111827;               /* Primary text */
+  --muted-fg-color: #6B7280;         /* Secondary text */
+  --accent-color: #4F46E5;           /* Blue-violet */
+  --accent-hover-color: #4338CA;     /* Blue-violet hover */
+  --border-subtle-color: #E5E7EB;    /* Standard border */
+  --border-hover-color: #D1D5DB;     /* Hover border */
+  --card-bg-color: #FFFFFF;          /* Solid card background */
+  --card-bg-hover-color: #F9FAFB;    /* Hover card background */
   --glow-sm-shadow: 0 0 12px rgba(79, 70, 229, 0.15);
   --glow-md-shadow: 0 0 28px rgba(79, 70, 229, 0.2);
   --glow-border-shadow: 0 0 0 1px rgba(79, 70, 229, 0.2), 0 0 12px rgba(79, 70, 229, 0.1);
 }
 ```
 
-### 2. Tokens oscuros (`.dark`)
+### 2. Dark Tokens (`.dark`)
 
 ```css
 .dark {
   color-scheme: dark;
   --bg-color: #0F172A;               /* Slate 900 */
   --surface-color: #1E293B;          /* Slate 800 */
-  --surface-elevated-color: #263348; /* Entre slate 800 y 700 */
+  --surface-elevated-color: #263348; /* Between slate 800 and 700 */
   --fg-color: #F1F5F9;
   --muted-fg-color: #94A3B8;
-  --accent-color: #6366F1;           /* Indigo 500 — más brillante en oscuro */
+  --accent-color: #6366F1;           /* Indigo 500 — brighter in dark */
   --accent-hover-color: #4F46E5;
   --border-subtle-color: rgba(148, 163, 184, 0.15);
   --border-hover-color: rgba(148, 163, 184, 0.25);
@@ -144,15 +143,15 @@ frontend/src/components/terms/*                     ← Componentes de Terms
 }
 ```
 
-### 3. Tipografía (`@theme`)
+### 3. Typography (`@theme`)
 
 ```css
-/* Usar Inter para display y body — eliminar Space Grotesk */
+/* Use Inter for display and body — remove Space Grotesk */
 --font-display: "Inter", system-ui, sans-serif;
 --font-body: "Inter", system-ui, sans-serif;
 ```
 
-### 4. Clase `.glass-card` (sin `backdrop-blur`, sin `scale`)
+### 4. `.glass-card` Class (no `backdrop-blur`, no `scale`)
 
 ```css
 .glass-card {
@@ -163,11 +162,11 @@ frontend/src/components/terms/*                     ← Componentes de Terms
 .glass-card:hover {
   @apply border-border-hover bg-card-bg-hover;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  /* ❌ SIN scale */
+  /* ❌ NO scale */
 }
 ```
 
-### 5. Botones con `cursor-pointer`
+### 5. Buttons with `cursor-pointer`
 
 ```css
 .btn-primary {
@@ -189,7 +188,7 @@ frontend/src/components/terms/*                     ← Componentes de Terms
 }
 ```
 
-### 6. `ConfirmModal` — variantes de botón (colores sólidos)
+### 6. `ConfirmModal` — button variants (solid colors)
 
 ```tsx
 const confirmBtnClasses: Record<ConfirmVariant, string> = {
@@ -199,170 +198,170 @@ const confirmBtnClasses: Record<ConfirmVariant, string> = {
 };
 ```
 
-> **Nota:** `success` usa `indigo-600` (acento azul-violeta) porque "habilitar" un usuario es una acción primaria afirmativa que debe verse como la acción principal del sistema.
+> **Note:** `success` uses `indigo-600` (blue-violet accent) because "enabling" a user is an affirmative primary action that should visually align as the main action of the system.
 
-### 7. Hover en filas de tabla (`UsersDesktopTable`)
+### 7. Hover on Table Rows (`UsersDesktopTable`)
 
 ```tsx
-// Antes: hover:bg-white/5
-// Después: hover:bg-surface-elevated
+// Before: hover:bg-white/5
+// After: hover:bg-surface-elevated
 <tr key={user.id} className="group transition-colors hover:bg-surface-elevated">
 ```
 
-### 8. Header del Dashboard — eliminar `hover:scale-105`
+### 8. Dashboard Header — remove `hover:scale-105`
 
 ```tsx
-// Quitar "transition-transform duration-300 hover:scale-105" del botón de tema
+// Remove "transition-transform duration-300 hover:scale-105" from the theme button
 className="btn-secondary p-3 flex items-center justify-center rounded-lg"
 ```
 
-### 9. `body` — sin radial gradient de ámbar
+### 9. `body` — no amber radial gradient
 
 ```css
 body {
   @apply bg-background text-foreground font-body antialiased transition-colors duration-300;
-  /* Fondo limpio — sin background-image */
+  /* Clean background — no background-image */
 }
 ```
 
-### 10. Chat (NodePay Copilot) y Terms & Conditions
-- **Chat:** Las burbujas de usuario pueden usar `bg-accent text-white`, mientras que las del asistente pueden usar `bg-surface-elevated text-foreground`. El área de input debe usar un estilo consistente (bordes `border-subtle`, fondo `bg-card-bg`).
-- **Terms:** Si se despliegan en modal o página, deben usar `.glass-card` o un contenedor con `bg-card-bg`, tipografía legible y colores de texto `text-muted-fg` para párrafos y `text-foreground` para títulos.
-- **Componentes Compartidos:** Se deben aprovechar las clases de utilidades `.glass-card`, `.btn-primary`, `.btn-secondary`, `.input-glass` para botones, inputs y contenedores. Si se detecta un patrón repetido (ej. Modal Container), considerar extraer un `<Modal>` genérico.
+### 10. Chat (NodePay Copilot) and Terms & Conditions
+- **Chat:** User bubbles can use `bg-accent text-white`, while assistant bubbles can use `bg-surface-elevated text-foreground`. The input area must use a consistent style (`border-subtle` borders, `bg-card-bg` background).
+- **Terms:** If displayed in a modal or page, they must use `.glass-card` or a container with `bg-card-bg`, legible typography, and `text-muted-fg` for paragraphs and `text-foreground` for titles.
+- **Shared Components:** Leverage utility classes `.glass-card`, `.btn-primary`, `.btn-secondary`, `.input-glass` for buttons, inputs, and containers. If a repeated pattern is detected (e.g., Modal Container), consider extracting a generic `<Modal>`.
 
 ---
 
-## Impacto en arquitectura
+## Impact on Architecture
 
-Cambio puramente visual. **No afecta** la arquitectura de datos, routing, stores, ni APIs.
+Purely visual change. **Does not affect** data architecture, routing, stores, or APIs.
 
-Archivos de contexto a actualizar post-implementación:
-- `.ai/context/development-guidelines.md` → agregar convención sobre uso de `scale` en hover.
-- `.ai/context/decisions.md` → registrar migración de acento ámbar → azul-violeta.
-
----
-
-## Plan de implementación
-
-1. **`index.css`** — Actualizar tokens `:root` y `.dark`, `@theme`, `.glass-card`, `.btn-primary`, `.btn-secondary`, `.input-glass` y `body`.
-2. **`ConfirmModal.tsx`** — Reemplazar `confirmBtnClasses` por colores sólidos.
-3. **`DashboardLayout.tsx`** — Quitar `hover:scale-105` y `transition-transform duration-300` del botón de toggle de tema.
-4. **`UsersDesktopTable.tsx`** — Cambiar hover de filas de `hover:bg-white/5` a `hover:bg-surface-elevated`.
-5. **`UserCard.tsx`** — El hover se cubre por el cambio en `.glass-card`. Verificar no haya overrides manuales.
-6. **`UsersTable.tsx`** — Añadir `cursor-pointer` a botones de paginación si no lo tienen ya.
-7. **Componentes de Chat y Terms** — Identificar y actualizar `AIAssistantPanel` y cualquier modal o vista de Terms & Conditions para usar las clases y tokens recién definidos.
-8. **Extracción de componentes** — Si aplica, extraer lógica visual repetida.
-9. Actualizar `.ai/context/development-guidelines.md` y `.ai/context/decisions.md`.
+Context files to update post-implementation:
+- `.ai/context/development-guidelines.md` → add convention on hover `scale` usage.
+- `.ai/context/decisions.md` → record migration from amber to blue-violet accent.
 
 ---
 
-## Criterios de aceptación
+## Implementation Plan
 
-- [ ] **CA-01:** Al hacer hover sobre cards, tabla, paginación y header — ninguno escala visualmente.
-- [ ] **CA-02:** El cursor cambia a `pointer` sobre cualquier `<button>` o enlace interactivo.
-- [ ] **CA-03:** El botón "Enable" del modal se muestra en azul-violeta sólido (`indigo-600`), legible en ambos modos.
-- [ ] **CA-04:** El botón "Disable" del modal se muestra en rojo sólido (`red-600`), legible en ambos modos.
-- [ ] **CA-05:** El fondo en modo claro es gris `#F3F4F8`, no blanco puro.
-- [ ] **CA-06:** El acento de la app (botones primarios, focus rings, spinner) es azul-violeta, no ámbar.
-- [ ] **CA-07:** La tipografía de headings usa **Inter** (sin Space Grotesk).
-- [ ] **CA-08:** El modo oscuro sigue funcionando con el nuevo sistema de colores.
-- [ ] **CA-09:** Sin regresiones funcionales: búsqueda, paginación, toggle de usuario y logout operan correctamente.
-- [ ] **CA-10:** El chat Copilot usa la paleta de colores y componentes compartidos correctos.
-- [ ] **CA-11:** El componente de Terms & Conditions luce coherente y aplica los nuevos tokens.
+1. **`index.css`** — Update `:root` and `.dark` tokens, `@theme`, `.glass-card`, `.btn-primary`, `.btn-secondary`, `.input-glass`, and `body`.
+2. **`ConfirmModal.tsx`** — Replace `confirmBtnClasses` with solid colors.
+3. **`DashboardLayout.tsx`** — Remove `hover:scale-105` and `transition-transform duration-300` from the theme toggle button.
+4. **`UsersDesktopTable.tsx`** — Change row hovers from `hover:bg-white/5` to `hover:bg-surface-elevated`.
+5. **`UserCard.tsx`** — Hover is covered by the `.glass-card` change. Verify no manual overrides exist.
+6. **`UsersTable.tsx`** — Add `cursor-pointer` to pagination buttons if not already present.
+7. **Chat and Terms Components** — Identify and update `AIAssistantPanel` and any Terms & Conditions modal or view to use the newly defined classes and tokens.
+8. **Component Extraction** — If applicable, extract repeated visual logic.
+9. Update `.ai/context/development-guidelines.md` and `.ai/context/decisions.md`.
 
 ---
 
-## Pruebas sugeridas
+## Acceptance Criteria
 
-1. Abrir la app en modo claro → fondo gris claro, acento azul-violeta, sin scale en hover.
-2. Hover sobre: header, cards mobile, tabla desktop, paginación → ausencia de escala.
-3. Clic en 3 puntos de usuario → "Disable/Enable" → modal con botón de color sólido correcto.
-4. Activar modo oscuro → coherencia visual del nuevo tema.
-5. Hover sobre `btn-primary` y `btn-secondary` → `cursor: pointer` visible.
-6. Abrir "NodePay Copilot" y enviar un mensaje → verificar los estilos de burbujas, input y fondo.
-7. Revisar la sección/modal de "Terms & Conditions" → comprobar tipografía, espaciado y legibilidad.
+- [ ] **AC-01:** When hovering over cards, tables, pagination, and header, none scale visually.
+- [ ] **AC-02:** The cursor changes to `pointer` over any interactive `<button>` or link.
+- [ ] **AC-03:** The "Enable" button of the modal is shown in solid blue-violet (`indigo-600`), legible in both modes.
+- [ ] **AC-04:** The "Disable" button of the modal is shown in solid red (`red-600`), legible in both modes.
+- [ ] **AC-05:** The background in light mode is gray `#F3F4F8`, not pure white.
+- [ ] **AC-06:** The app accent (primary buttons, focus rings, spinner) is blue-violet, not amber.
+- [ ] **AC-07:** Heading typography uses **Inter** (no Space Grotesk).
+- [ ] **AC-08:** Dark mode continues to work with the new color system.
+- [ ] **AC-09:** No functional regressions: search, pagination, user toggle, and logout operate correctly.
+- [ ] **AC-10:** Copilot chat uses the correct color palette and shared components.
+- [ ] **AC-11:** The Terms & Conditions component looks consistent and applies the new tokens.
 
 ---
 
-## Riesgos
+## Suggested Testing
 
-| Riesgo | Probabilidad | Mitigación |
+1. Open the app in light mode → light gray background, blue-violet accent, no scale on hover.
+2. Hover over: header, mobile cards, desktop table, pagination → absence of scaling.
+3. Click user actions menu (...) → "Disable/Enable" → modal with correct solid color button.
+4. Activate dark mode → check visual coherence of the new theme.
+5. Hover over `btn-primary` and `btn-secondary` → `cursor: pointer` visible.
+6. Open "NodePay Copilot" and send a message → verify bubble styles, input, and background.
+7. Review the "Terms & Conditions" section/modal → check typography, spacing, and readability.
+
+---
+
+## Risks
+
+| Risk | Probability | Mitigation |
 |--------|-------------|------------|
-| Referencias hardcoded a `amber-500`/`amber-400` en componentes no cubiertos | Media | Grep global de `amber-` antes de finalizar y reemplazar por `indigo-`/`accent`. |
-| `StatusBadge.tsx` puede usar clases Tailwind hardcoded incompatibles | Baja | Revisar el componente y actualizar si es necesario. |
-| `btn-secondary:hover` puede verse igual al fondo en modo claro | Baja | Verificar contraste en navegador. Ajustar a `#EDEDF2` si hace falta. |
+| Hardcoded references to `amber-500`/`amber-400` in uncovered components | Medium | Run a global grep for `amber-` before finalizing and replace with `indigo-`/`accent`. |
+| `StatusBadge.tsx` may use incompatible hardcoded Tailwind classes | Low | Review the component and update if necessary. |
+| `btn-secondary:hover` may look identical to the background in light mode | Low | Verify contrast in browser. Adjust to `#EDEDF2` if needed. |
 
 ---
 
-## Notas para futuros agentes
+## Notes for Future Agents
 
-- **Convención `scale` en hover:** Está reservado **exclusivamente** para micro-interacciones de botones de acción puntual (FAB, submit). **Nunca** aplicar a contenedores, cards, tablas o barras de navegación.
-- **Acento del sistema:** Migrado de ámbar (`#F59E0B`) a azul-violeta (`#4F46E5` / `indigo-600`). Usar siempre `bg-accent`, `text-accent`, o clases `indigo-*`.
-- **Glassmorphism:** Reducido. `.glass-card` ya no usa `backdrop-blur-md`. Fondo sólido con sombra suave.
-- **`ConfirmModal` `success`:** Intencionalmente usa azul-violeta (no verde) para consistencia semántica con el design system.
-- **`App.css`:** Contiene estilos de scaffolding de Vite (`hero`, `counter`, etc.) que no se usan en producción. No tocar.
+- **Hover `scale` convention:** Reserved **exclusively** for micro-interactions on targeted action buttons (FAB, submit). **Never** apply to containers, cards, tables, or navigation bars.
+- **System Accent:** Migrated from amber (`#F59E0B`) to blue-violet (`#4F46E5` / `indigo-600`). Always use `bg-accent`, `text-accent`, or `indigo-*` classes.
+- **Glassmorphism:** Reduced. `.glass-card` no longer uses `backdrop-blur-md`. Solid background with soft shadow.
+- **`ConfirmModal` `success`:** Intencionalmente uses blue-violet (not green) for semantic consistency with the design system.
+- **`App.css`:** Contains Vite scaffolding styles (`hero`, `counter`, etc.) that are not used in production. Do not touch.
 
 ---
 
-## Cambios posteriores / Ampliaciones
+## Subsequent Changes / Expansions
 
-### Ampliación: Corrección de bugs en Barra de Búsqueda de Usuarios
-- **Fecha:** 2026-06-11
-- **Motivo del cambio:**
-  - El icono de búsqueda se superponía con el placeholder y el texto debido a falta de padding adecuado (`!pl-12` sobre la clase `input-glass`).
-  - La barra de búsqueda desaparecía completamente si no había resultados, imposibilitando limpiar la búsqueda o regresar a la tabla.
-- **Nuevo alcance:**
-  - Ajuste de estilos en el `input` de búsqueda para forzar `!pl-12`.
-  - Reestructuración del renderizado en `UsersTable.tsx` para mantener visible el `Header` y la barra de búsqueda incluso cuando `users.length === 0`.
-- **Archivos o módulos afectados:**
+### Expansion: Bug Fixes in User Search Bar
+- **Date:** 2026-06-11
+- **Reason for Change:**
+  - The search icon overlapped with the placeholder and text due to a lack of proper padding (`!pl-12` on the `input-glass` class).
+  - The search bar disappeared entirely when there were no results, making it impossible to clear the search or return to the table.
+- **New Scope:**
+  - Adjusted search `input` styles to force `!pl-12`.
+  - Restructured rendering in `UsersTable.tsx` to keep the Header and search bar visible even when `users.length === 0`.
+- **Affected Files or Modules:**
   - `frontend/src/components/users/UsersTable.tsx`
-- **Nuevos criterios de aceptación:**
-  - [ ] **CA-12:** El texto en la barra de búsqueda no se superpone con el icono de la lupa.
-  - [ ] **CA-13:** Al realizar una búsqueda que no arroja resultados, la barra de búsqueda sigue visible y permite limpiar el filtro.
-- **Impacto en contexto o arquitectura:** Ninguno (cambio UI/UX a nivel componente).
+- **New Acceptance Criteria:**
+  - [ ] **AC-12:** Text in the search bar does not overlap with the magnifying glass icon.
+  - [ ] **AC-13:** When performing a search that returns no results, the search bar remains visible and allows clearing the filter.
+- **Impact on Context or Architecture:** None (UI/UX change at the component level).
 
-### Ampliación: Optimización de Densidad de Interfaz y Uso de Viewport
-- **Fecha:** 2026-06-11
-- **Motivo del cambio:**
-  - Las listas y tablas muestran pocos registros (~5) obligando a scroll innecesario en resoluciones comunes como 1920x1080 (viewport ~1432x793).
-  - Exceso de paddings (`py-5`, `p-8`) y márgenes (`mb-10`, `mt-8`) en `DashboardLayout`, `UsersTable` y `TermsPage` que rompen la densidad visual típica de un SaaS moderno (e.g. Linear, GitHub).
-- **Nuevo alcance:**
-  - Reducir paddings generales en `DashboardLayout.tsx` (`p-8` -> `p-6`, `mb-10` -> `mb-6`).
-  - Ajustar densidad de tabla en `UsersDesktopTable.tsx` (header `py-5` -> `py-3`, celdas `py-4` -> `py-2.5` o `py-3`).
-  - Ajustar márgenes en `UsersTable.tsx` y compresión de barra de búsqueda / paginación.
-  - Reducir altura del Header Banner en `TermsPage.tsx` (`py-12` -> `py-8`, `space-y-8` -> `space-y-6`).
-- **Archivos afectados:**
+### Expansion: UI Density and Viewport Optimization
+- **Date:** 2026-06-11
+- **Reason for Change:**
+  - Lists and tables displayed very few records (~5), forcing unnecessary scrolling on common resolutions like 1920x1080 (viewport ~1432x793).
+  - Excessive padding (`py-5`, `p-8`) and margins (`mb-10`, `mt-8`) in `DashboardLayout`, `UsersTable`, and `TermsPage` broke the visual density expected in a modern SaaS (e.g., Linear, GitHub).
+- **New Scope:**
+  - Reduce general padding in `DashboardLayout.tsx` (`p-8` -> `p-6`, `mb-10` -> `mb-6`).
+  - Adjust table density in `UsersDesktopTable.tsx` (header `py-5` -> `py-3`, cells `py-4` -> `py-2.5` or `py-3`).
+  - Adjust margins in `UsersTable.tsx` and compress search bar / pagination.
+  - Reduce Header Banner height in `TermsPage.tsx` (`py-12` -> `py-8`, `space-y-8` -> `space-y-6`).
+- **Affected Files:**
   - `frontend/src/layouts/DashboardLayout.tsx`
   - `frontend/src/components/users/UsersTable.tsx`
   - `frontend/src/components/users/UsersDesktopTable.tsx`
   - `frontend/src/pages/TermsPage.tsx`
-- **Criterios de aceptación:**
-  - [ ] **CA-14:** Las tablas de escritorio muestran más registros visibles sin requerir scroll (filas más compactas ~36-40px de alto).
-  - [ ] **CA-15:** El Layout general se siente más integrado, con márgenes consistentes y reducidos.
-  - [ ] **CA-16:** El header de Terms & Conditions consume significativamente menos espacio vertical sin perder legibilidad ni jerarquía.
+- **Acceptance Criteria:**
+  - [ ] **AC-14:** Desktop tables display more visible records without requiring scroll (more compact rows ~36-40px high).
+  - [ ] **AC-15:** The overall layout feels more integrated, with consistent and reduced margins.
+  - [ ] **AC-16:** The Terms & Conditions header consumes significantly less vertical space without losing legibility or hierarchy.
 
-### Ampliación: Densidad Ultra-Compacta (Eficiencia de Viewport)
-- **Fecha:** 2026-06-11
-- **Motivo del cambio:**
-  - El usuario solicita un nivel superior de compacidad enfocado en herramientas de administración (SaaS) para evitar que parezca un landing page, asegurando que 5 usuarios, buscador y paginación quepan sobradamente en 1432x793.
-- **Nuevo alcance:**
-  - Reducir más el header de `DashboardLayout.tsx` (espaciado y altura).
-  - En `UsersTable`, integrar la paginación a la misma `glass-card` de la tabla en escritorio (fusionar contenedores).
-  - En `UsersDesktopTable`, reducir tamaño del Avatar (`md` a `sm`) y bajar el padding de filas a `py-2` y `py-2.5` en headers.
-  - En `TermsPage`, compactar aún más el Hero Banner y los espaciados de la tabla de contenidos e introducción.
-- **Impacto en contexto o arquitectura:** Ninguno (continuación de optimización visual).
+### Expansion: Ultra-Compact Density (Viewport Efficiency)
+- **Date:** 2026-06-11
+- **Reason for Change:**
+  - The user requested a higher level of compactness focused on administration tools (SaaS) to avoid a landing page appearance, ensuring that 5 users, search, and pagination fit easily in 1432x793.
+- **New Scope:**
+  - Further reduce header in `DashboardLayout.tsx` (spacing and height).
+  - In `UsersTable`, integrate pagination into the same `.glass-card` as the desktop table (merge containers).
+  - In `UsersDesktopTable`, reduce Avatar size (`md` to `sm`) and lower row padding to `py-2` and header padding to `py-2.5`.
+  - In `TermsPage`, further compact the Hero Banner, table of contents spacing, and introduction.
+- **Impact on Context or Architecture:** None (continuation of visual optimization).
 
-### Ampliación: Estabilidad de Layout y Altura Dinámica
-- **Fecha:** 2026-06-11
-- **Motivo del cambio:**
-  - El usuario solicita que la vista principal del dashboard se comporte como una aplicación de escritorio nativa, llenando el espacio vertical disponible y usando scroll interno en el cuerpo de la tabla, en lugar de scroll global de toda la página.
-  - Además, los botones se sentían demasiado grandes ("peso visual excesivo") en comparación a las proporciones esperadas en una interfaz de administración densa.
-- **Nuevo alcance:**
-  - `DashboardLayout.tsx`: Implementar `min-h-screen flex flex-col` y propagar el crecimiento con `flex-1 min-h-0` hacia las vistas internas.
-  - `UsersTable.tsx` / `UsersDesktopTable.tsx`: Configurar contenedores para ocupar `flex-1 min-h-0`, habilitando `overflow-auto` en la tabla y un header sticky (`sticky top-0`). El pie de paginación queda anclado en la parte inferior (`flex-shrink-0`).
-  - `index.css`: Reducir botones base `.btn-primary` y `.btn-secondary` (`px-6 py-3` → `px-4 py-2.5`, aplicando `text-sm`).
-  - `CreateUser.tsx`: Retirar anchos completos (`w-full`) en botones de formularios, moviéndolos a la derecha (`justify-end`) para reducir peso visual.
-- **Criterios de aceptación:**
-  - [x] **CA-17:** La tabla de usuarios llena el alto restante del viewport, manteniendo la paginación anclada abajo.
-  - [x] **CA-18:** Si los usuarios exceden el espacio de la tabla, el scroll se hace en el cuerpo de la tabla (`tbody`), no en la página entera.
-  - [x] **CA-19:** Los botones globales tienen una altura promedio de ~40-44px y los formularios lucen proporcionados.
+### Expansion: Layout Stability and Dynamic Height
+- **Date:** 2026-06-11
+- **Reason for Change:**
+  - The user requested the main dashboard view to behave like a native desktop app, filling the available vertical space and using internal scroll on the table body rather than a global page scroll.
+  - Additionally, buttons felt too large ("excessive visual weight") compared to the expected proportions of a dense admin interface.
+- **New Scope:**
+  - `DashboardLayout.tsx`: Implement `min-h-screen flex flex-col` and propagate height growth with `flex-1 min-h-0` to internal views.
+  - `UsersTable.tsx` / `UsersDesktopTable.tsx`: Configure containers to occupy `flex-1 min-h-0`, enabling `overflow-auto` on the table and a sticky header (`sticky top-0`). The pagination footer is anchored at the bottom (`flex-shrink-0`).
+  - `index.css`: Reduce base buttons `.btn-primary` and `.btn-secondary` (`px-6 py-3` → `px-4 py-2.5`, applying `text-sm`).
+  - `CreateUser.tsx`: Remove full widths (`w-full`) on form buttons, shifting them to the right (`justify-end`) to reduce visual weight.
+- **Acceptance Criteria:**
+  - [x] **AC-17:** The user table fills the remaining viewport height, keeping pagination anchored at the bottom.
+  - [x] **AC-18:** If users exceed the table space, scrolling occurs within the table body (`tbody`), not the entire page.
+  - [x] **AC-19:** Global buttons have an average height of ~40-44px and forms look well-proportioned.

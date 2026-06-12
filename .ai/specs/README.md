@@ -1,75 +1,75 @@
-# Spec Driven Development: Especificaciones
+# Spec Driven Development: Specifications
 
-Esta carpeta se utiliza para la creación y gestión de Especificaciones (Specs) siguiendo el enfoque de **Spec Driven Design / Spec Driven Development**.
+This folder is used for the creation and management of Specifications (Specs) following the **Spec Driven Design / Spec Driven Development** approach.
 
-## ¿Qué es una Spec?
-Una Spec (Especificación) es un documento que describe detalladamente una nueva funcionalidad, un cambio arquitectónico, un refactor importante o la corrección de un bug crítico, **antes o durante** su implementación. 
-Sirve como contrato entre el requerimiento (negocio/usuario) y la implementación técnica (agente LLM / desarrollador humano).
+## What is a Spec?
+A Spec (Specification) is a document that describes in detail a new feature, an architectural change, a major refactor, or a critical bug fix, **before or during** its implementation. 
+It serves as a contract between the requirements (business/user) and the technical implementation (LLM agent / human developer).
 
-## ¿Cuándo crear una Spec?
-Cada vez que se vaya a realizar:
-- Una nueva feature o funcionalidad significativa.
-- Un cambio importante en la lógica de negocio existente.
-- Un refactor de código.
-- Una alteración del modelo de base de datos o de la arquitectura.
+## When to Create a Spec?
+Create a spec whenever you perform:
+- A new significant feature or functionality.
+- A major change in the existing business logic.
+- A code refactor.
+- An alteration of the database model or the architecture.
 
-## ¿Cómo nombrar una Spec?
-Las specs deben seguir un orden cronológico y descriptivo. Convención recomendada:
+## How to Name a Spec?
+Specs should follow a chronological and descriptive naming convention. Recommended format:
 
 ```txt
 YYYY-MM-DD-feature-or-change-name.md
 ```
 
-**Ejemplos:**
+**Examples:**
 - `2026-06-10-user-authentication.md`
 - `2026-06-11-refactor-payment-service.md`
 - `2026-06-12-add-dashboard-filters.md`
 
-## ¿Cómo usar una Spec para implementar cambios?
-1. **Creación/Revisión:** Un Agente o el Usuario redacta la spec usando el formato definido en `spec-template.md`.
-2. **Aprobación:** Si hay puntos ambiguos, se discuten. (El agente debe marcar como "Pendiente de confirmar" o preguntar al usuario).
-3. **Implementación:** El desarrollador o agente LLM escribe el código estrictamente guiado por lo descrito en la spec.
-4. **Validación:** Se comprueban los Criterios de Aceptación.
-5. **Cierre:** Se marca el estado de la Spec como `Implementada`.
+## How to Use a Spec to Implement Changes?
+1. **Creation/Review:** An Agent or the User drafts the spec using the template defined in `spec-template.md`.
+2. **Approval:** If there are ambiguous points, they are discussed. (The agent should mark them as "Pending confirmation" or ask the user).
+3. **Implementation:** The developer or LLM agent writes the code strictly guided by what is described in the spec.
+4. **Validation:** Acceptance Criteria are verified.
+5. **Closure:** The Spec status is marked as `Implemented`.
 
-## ¿Cómo actualizar el contexto del proyecto después?
-Una vez implementada una Spec, el agente DEBE evaluar si el cambio impacta el entendimiento global del proyecto.
+## How to Update the Project Context Afterwards?
+Once a Spec is implemented, the agent MUST evaluate whether the change impacts the overall understanding of the project.
 
-En caso afirmativo, se deben actualizar los siguientes archivos según corresponda:
-- `.ai/context/architecture-design.md` (si la arquitectura cambió).
-- `.ai/context/file-map.md` (si se añadieron/movieron archivos estructurales).
-- `.ai/context/decisions.md` (si la spec introdujo una decisión técnica permanente).
-- `.ai/context/project-context.md` (si cambiaron comandos, variables de entorno, o descripciones base).
+If so, the following files should be updated as appropriate:
+- `.ai/context/architecture-design.md` (if the architecture changed).
+- `.ai/context/file-map.md` (if structural files were added/moved).
+- `.ai/context/decisions.md` (if the spec introduced a permanent technical decision).
+- `.ai/context/project-context.md` (if commands, environment variables, or base descriptions changed).
 
-## Manejo de Bugs y Fixes
+## Handling Bugs and Fixes
 
-No todos los bugs requieren una nueva spec.
+Not all bugs require a new spec.
 
-### Actualizar una spec existente cuando:
+### Update an existing spec when:
 
-- El bug fue introducido por esa misma spec.
-- El bug es consecuencia directa de una feature reciente.
-- El fix forma parte del mismo objetivo funcional.
-- El cambio no representa una nueva iniciativa.
+- The bug was introduced by that same spec.
+- The bug is a direct consequence of a recent feature.
+- The fix is part of the same functional goal.
+- The change does not represent a new initiative.
 
-### Crear una nueva spec cuando:
+### Create a new spec when:
 
-- El bug es independiente de las specs actuales.
-- El bug requiere cambios arquitectónicos.
-- El bug afecta múltiples módulos sin relación directa con la spec original.
-- El fix requiere una estrategia técnica propia.
-- El bug representa una iniciativa de trabajo independiente.
+- The bug is independent of current specs.
+- The bug requires architectural changes.
+- The bug affects multiple modules with no direct relation to the original spec.
+- The fix requires its own technical strategy.
+- The bug represents an independent work initiative.
 
-### Regla general
+### General Rule
 
-Si el fix responde a la pregunta:
+If the fix answers the question:
 
-"¿Esto sigue siendo parte del mismo objetivo?"
+"Is this still part of the same goal?"
 
-Entonces actualizar la spec existente.
+Then update the existing spec.
 
-Si responde a:
+If it answers:
 
-"¿Esto merece su propia planificación, análisis y criterios de aceptación?"
+"Does this deserve its own planning, analysis, and acceptance criteria?"
 
-Entonces crear una nueva spec.
+Then create a new spec.

@@ -1,42 +1,42 @@
-# Arquitectura del Sistema: NodePay
+# System Architecture: NodePay
 
-## Descripción de la Arquitectura Actual
-NodePay utiliza una **Arquitectura de Microservicios** donde cada servicio es independiente, tiene su propio código, dependencias y ciclo de vida de despliegue. Los servicios se comunican a través de contratos bien definidos (REST y WebSockets).
+## Description of the Current Architecture
+NodePay uses a **Microservices Architecture** where each service is independent, with its own codebase, dependencies, and deployment lifecycle. Services communicate through well-defined contracts (REST and WebSockets).
 
-## Capas Principales del Sistema
-1. **Client Layer (Frontend):** React SPA que maneja la interfaz de usuario, interactúa con Keycloak para autenticación y consume las APIs REST/WebSockets.
-2. **User Management Service (Node.js):** Servicio principal para gestión de identidades, operaciones de billeteras y simulación de transacciones.
-3. **AI Service (Python):** Servicio inteligente que proporciona QA sobre Términos y Condiciones mediante RAG y respuestas sobre datos de negocio mediante un SQL Agent de solo lectura.
-4. **Data Layer (PostgreSQL):** Base de datos relacional persistente compartida pero lógicamente aislada mediante esquemas (`public` para Prisma, `auth` para Keycloak).
-5. **Identity Provider (Keycloak):** Servicio dedicado de Single Sign-On (SSO) y gestión de tokens JWT.
+## Main System Layers
+1. **Client Layer (Frontend):** A React SPA that handles the user interface, interacts with Keycloak for authentication, and consumes REST/WebSockets APIs.
+2. **User Management Service (Node.js):** The main service for identity management, wallet operations, and transaction simulation.
+3. **AI Service (Python):** An intelligent service providing QA over Terms and Conditions via RAG, and business data queries using a read-only SQL Agent.
+4. **Data Layer (PostgreSQL):** A persistent, shared relational database that is logically isolated using schemas (`public` for Prisma, `auth` for Keycloak).
+5. **Identity Provider (Keycloak):** A dedicated Single Sign-On (SSO) and JWT token management service.
 
-## Responsabilidad de cada Capa
-- **Frontend:** Presentación, manejo de estado global (Zustand para auth, RTK para data), UI en tiempo real.
-- **Node.js Backend:** Lógica de negocio de pagos (Domain-Driven Design), emisión de eventos en tiempo real (Socket.IO).
-- **Python AI Service:** Procesamiento de lenguaje natural, Vector Store (FAISS), interacciones seguras con la base de datos a nivel lectura.
+## Responsibility of Each Layer
+- **Frontend:** Presentation, global state management (Zustand for auth, RTK for data), real-time UI.
+- **Node.js Backend:** Payment business logic (Domain-Driven Design), real-time event broadcasting (Socket.IO).
+- **Python AI Service:** Natural language processing, Vector Store (FAISS), secure read-only database interactions.
 
-## Flujo General de Datos
-1. **Autenticación:** Frontend -> Keycloak -> JWT devuelto al Frontend.
-2. **Operación de Negocio:** Frontend (con JWT) -> REST API (Node) -> Prisma -> PostgreSQL.
-3. **Real-Time:** Node Backend procesa simulación -> Emite evento a Socket.IO (room específico) -> Frontend actualiza estado sin recargar.
-4. **IA Query (RAG):** Frontend -> REST API (Python) -> Semantic Cache -> Si hay Miss -> FAISS -> GPT-4o-mini -> Frontend.
+## General Data Flow
+1. **Authentication:** Frontend -> Keycloak -> JWT returned to Frontend.
+2. **Business Operation:** Frontend (with JWT) -> REST API (Node) -> Prisma -> PostgreSQL.
+3. **Real-Time:** Node Backend processes simulation -> Emits event to Socket.IO (specific room) -> Frontend updates state without reloading.
+4. **AI Query (RAG):** Frontend -> REST API (Python) -> Semantic Cache -> On Miss -> FAISS -> GPT-4o-mini -> Frontend.
 
-## Patrones de Diseño Identificados
-- **Repository Pattern:** En el backend de Node (`Controller -> Service -> IUserRepository -> PrismaUserRepository`).
-- **Domain-Driven Design (Inspiración):** Lógica agrupada por dominios (`User`, `Wallet`, `Transaction`). Lógica de negocio encapsulada en servicios (ej. `SimulationService`).
-- **Pub/Sub (Real-Time):** Uso de Rooms en Socket.IO para notificaciones orientadas por `walletId`.
-- **Semantic Caching:** En el servicio de IA para evitar llamadas innecesarias al LLM.
+## Identified Design Patterns
+- **Repository Pattern:** In the Node backend (`Controller -> Service -> IUserRepository -> PrismaUserRepository`).
+- **Domain-Driven Design (Inspiration):** Logic grouped by domains (`User`, `Wallet`, `Transaction`). Business logic encapsulated in services (e.g., `SimulationService`).
+- **Pub/Sub (Real-Time):** Use of Rooms in Socket.IO for notifications targeted by `walletId`.
+- **Semantic Caching:** In the AI service to avoid unnecessary LLM calls.
 
-## Decisiones Arquitectónicas Visibles
-- Separación de Keycloak de la lógica de aplicación para la gestión completa de identidad.
-- Restricción del AI SQL Agent a operaciones `SELECT` exclusivamente, para evitar manipulación accidental o maliciosa de datos (Data Integrity).
-- Las transacciones son inmutables (solo se crean como `COMPLETED` o `REJECTED`, no se actualizan).
-- Dependencia fuerte en Docker Compose para el entorno de desarrollo y enlace de redes internas.
+## Visible Architectural Decisions
+- Separation of Keycloak from the application logic for complete identity management.
+- Restricting the AI SQL Agent to `SELECT` operations exclusively to prevent accidental or malicious data manipulation (Data Integrity).
+- Transactions are immutable (created only as `COMPLETED` or `REJECTED`, never updated).
+- Strong dependency on Docker Compose for the development environment and internal network bridging.
 
-## Riesgos o Puntos de Cuidado
-- La base de datos es única y compartida entre los esquemas de la aplicación y Keycloak. Si PostgreSQL cae, todo el sistema cae.
-- Las consultas en el Agente SQL dependen de mantener los nombres de tablas/columnas entre comillas dobles debido a Prisma.
-- Mantenimiento del esquema de DB: Prisma es la única fuente de la verdad para el esquema `public`.
+## Risks or Areas of Concern
+- The database is shared across application and Keycloak schemas. If PostgreSQL goes down, the entire system goes down.
+- Queries in the SQL Agent depend on keeping table/column names in double quotes due to Prisma.
+- DB Schema Maintenance: Prisma is the single source of truth for the `public` schema.
 
-## Lugares donde la Arquitectura aún no está Clara
-- *Pendiente de confirmar:* Escalabilidad horizontal de Socket.IO (si se requieren múltiples instancias del backend Node, faltaría un adaptador de Redis).
+## Areas Where the Architecture is Not Yet Clear
+- *Pending confirmation:* Horizontal scalability of Socket.IO (if multiple instances of the Node backend are required, a Redis adapter would be missing).

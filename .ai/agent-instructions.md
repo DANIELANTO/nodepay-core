@@ -1,96 +1,95 @@
-# Instrucciones Permanentes para Agentes LLM
+# Permanent Instructions for LLM Agents
 
-Eres un Asistente / Agente LLM trabajando en **NodePay**. Debes operar bajo las siguientes reglas y flujos de trabajo estrictamente.
+You are an LLM Assistant / Agent working on **NodePay**. You must strictly operate under the following rules and workflows.
 
-## 1. Reglas de Lectura de Contexto (MANDATORIO)
-Antes de modificar código en este proyecto, **DEBES LEER** estos archivos si están disponibles en tu contexto:
+## 1. Context Reading Rules (MANDATORY)
+Before modifying any code in this project, **YOU MUST READ** these files if they are available in your context:
 * `.ai/context/project-context.md`
 * `.ai/context/architecture-design.md`
 * `.ai/context/file-map.md`
 * `.ai/context/development-guidelines.md`
 * `.ai/context/decisions.md`
 
-## 2. Flujo de Especificaciones (Spec Driven Design)
-Antes de implementar una nueva feature, refactor, o cambio importante, debes revisar si existe una spec relacionada en la carpeta `.ai/specs/`.
-* **Si no existe una spec:** Debes crear una nueva usando `.ai/specs/spec-template.md`
-basándote en la solicitud del usuario, seguir los lineamientos de `.ai/specs/README.md`, y esperar validación si hay dudas.
-* **Toda implementación:** DEBE seguir la spec correspondiente paso a paso y valida lineamientos con `.ai/specs/README.md`.
-* **Incompletitud:** Si durante la implementación descubres que la spec está incompleta (ej. falta un caso de borde), actualiza la spec antes de continuar escribiendo código y valida lineamientos con `.ai/specs/README.md`.
+## 2. Specification Workflow (Spec Driven Design)
+Before implementing a new feature, refactor, or major change, you must check if a related spec exists in the `.ai/specs/` folder.
+* **If a spec does not exist:** You must create a new one using `.ai/specs/spec-template.md` based on the user's request, follow the guidelines in `.ai/specs/README.md`, and wait for validation if there are any doubts.
+* **All implementations:** MUST follow the corresponding spec step-by-step and validate guidelines with `.ai/specs/README.md`.
+* **Incompleteness:** If during implementation you discover that the spec is incomplete (e.g., a missing edge case), update the spec before continuing to write code and validate guidelines with `.ai/specs/README.md`.
 
-## 3. Modificaciones Críticas
-Si un cambio requiere alterar la arquitectura, estructura de carpetas, responsabilidades de módulos, dependencias o implica nuevas decisiones técnicas críticas, **DEBES ACTUALIZAR TAMBIÉN:**
+## 3. Critical Modifications
+If a change requires altering the architecture, folder structure, module responsibilities, dependencies, or implies new critical technical decisions, **YOU MUST ALSO UPDATE:**
 * `.ai/context/architecture-design.md`
 * `.ai/context/file-map.md`
 * `.ai/context/decisions.md`
-* `.ai/context/project-context.md`, si aplica.
-* `.ai/context/development-guidelines.md`, si aplica.
+* `.ai/context/project-context.md`, if applicable.
+* `.ai/context/development-guidelines.md`, if applicable.
 
-## 4. Prompts Directos
-Si un prompt directo del usuario solicita un cambio o explica un detalle que afecta el contexto general del proyecto, el agente debe **actualizar los archivos de contexto pertinentes** proactivamente, aunque no se esté elaborando una spec formal.
+## 4. Direct Prompts
+If a direct user prompt requests a change or explains a detail that affects the overall context of the project, the agent must proactively **update the relevant context files**, even if a formal spec is not being created.
 
-## 5. Transparencia de Cambios
-Cada cambio importante debe dejar claro en el código, en la spec o en la respuesta:
-* Qué se cambió.
-* Por qué se cambió.
-* Qué archivos fueron afectados.
-* Qué impacto tiene en futuras modificaciones.
+## 5. Transparency of Changes
+Each major change must make clear in the code, spec, or response:
+* What was changed.
+* Why it was changed.
+* Which files were affected.
+* What impact it has on future modifications.
 
-## 6. Asunciones y Dudas
-**No asumas información crítica.** Si la intención de una arquitectura, un archivo o un requerimiento no está clara, no adivines ni inventes respuestas. Pregunta al usuario o marca la información en la documentación explícitamente como `Pendiente de confirmar`.
+## 6. Assumptions and Doubts
+**Do not assume critical information.** If the intention of an architecture, a file, or a requirement is not clear, do not guess or invent answers. Ask the user or explicitly mark the information in the documentation as `Pending confirmation`.
 
-## 7. Actualización Automática del Contexto
-El contexto de `.ai/context/` DEBE actualizarse proactivamente en los siguientes casos:
-* Se agrega o se elimina una feature.
-* Se cambia una dependencia clave en `package.json` o `requirements.txt`.
-* Se cambia la arquitectura o el flujo de datos.
-* Se altera la estructura de carpetas (mover componentes, crear nuevos módulos).
-* Se renombra un módulo/archivo estructural importante.
-* Se introducen nuevos patrones, estilos o convenciones de código.
-* Se toma una decisión técnica relevante durante una conversación con el usuario.
-* Una spec implementada modifica el comportamiento o reglas de negocio previamente documentadas en el sistema.
-* Un prompt directo del usuario introduce información relevante (contexto de despliegue, infraestructura, lógica no escrita, etc.).
+## 7. Automatic Context Update
+The context in `.ai/context/` MUST be proactively updated in the following cases:
+* A feature is added or removed.
+* A key dependency changes in `package.json` or `requirements.txt`.
+* The architecture or data flow changes.
+* The folder structure is altered (moving components, creating new modules).
+* An important structural module/file is renamed.
+* New code patterns, styles, or conventions are introduced.
+* A relevant technical decision is made during a conversation with the user.
+* An implemented spec modifies behavior or business rules previously documented in the system.
+* A direct user prompt introduces relevant information (deployment context, infrastructure, unwritten logic, etc.).
 
-Tu tarea es ser el guardián de la memoria del proyecto (Harness) para que los futuros agentes que abran este repositorio tengan una visión correcta, actualizada y 100% alineada a la realidad del código.
+Your task is to be the guardian of the project's memory (Harness) so that future agents opening this repository have a correct, updated view that is 100% aligned with the reality of the code.
 
-## Manejo de cambios adicionales sobre una spec existente
+## Handling Additional Changes to an Existing Spec
 
-Si después de implementar o iniciar una spec aparecen cambios adicionales, el agente debe decidir si el cambio es una extensión del objetivo original o si representa un objetivo nuevo.
+If additional changes appear after implementing or starting a spec, the agent must decide if the change is an extension of the original goal or represents a new goal.
 
-### Actualizar la spec existente cuando:
+### Update the existing spec when:
 
-- El cambio mantiene el mismo objetivo principal.
-- Solo amplía el alcance.
-- Afecta pantallas o componentes relacionados con la misma feature.
-- Busca consistencia visual, funcional o técnica con lo ya implementado.
-- Corrige una omisión del spec original.
-- Ajusta criterios de aceptación sin cambiar la intención principal.
+- The change maintains the same primary goal.
+- It only expands the scope.
+- It affects screens or components related to the same feature.
+- It seeks visual, functional, or technical consistency with what has already been implemented.
+- It corrects an omission in the original spec.
+- It adjusts acceptance criteria without changing the main intent.
 
-### Crear una nueva spec cuando:
+### Create a new spec when:
 
-- El cambio introduce una feature diferente.
-- El cambio requiere una arquitectura nueva.
-- El cambio tiene criterios de aceptación independientes.
-- El cambio afecta otra área del sistema sin relación directa.
-- El cambio introduce una decisión técnica importante separada.
-- El cambio es suficientemente grande como para implementarse, probarse y revisarse de forma independiente.
+- The change introduces a different feature.
+- The change requires a new architecture.
+- The change has independent acceptance criteria.
+- The change affects another area of the system with no direct relation.
+- The change introduces a separate major technical decision.
+- The change is large enough to be implemented, tested, and reviewed independently.
 
-### Regla general
+### General Rule
 
-No crear specs nuevos innecesariamente. Si el cambio es parte de la misma intención de producto o diseño, actualizar la spec existente y registrar la ampliación del alcance.
+Do not create new specs unnecessarily. If the change is part of the same product or design intent, update the existing spec and record the scope expansion.
 
-Cuando una spec ya fue implementada pero necesita ampliarse, cambiar su estado a:
+When a spec has already been implemented but needs to be expanded, change its status to:
 
-`Implementada - requiere ampliación`
+`Implemented - requires expansion`
 
-o crear una sección llamada:
+or create a section called:
 
-`## Cambios posteriores / Ampliaciones`
+`## Subsequent Changes / Expansions`
 
-Cada ampliación debe documentar:
+Each expansion must document:
 
-- Fecha.
-- Motivo del cambio.
-- Nuevo alcance.
-- Archivos o módulos adicionales afectados.
-- Nuevos criterios de aceptación.
-- Impacto en contexto o arquitectura.
+- Date.
+- Reason for the change.
+- New scope.
+- Additional affected files or modules.
+- New acceptance criteria.
+- Impact on context or architecture.

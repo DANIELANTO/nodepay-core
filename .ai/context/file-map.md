@@ -1,52 +1,52 @@
-# Mapa de Archivos y Carpetas
+# Directory and File Map
 
-## Estructura General
+## General Structure
 
 ```txt
 NodePay/
-├── .ai/                    # Development Harness: Contexto, specs, guías para agentes IA
-├── ai-service/             # Servicio backend Python/FastAPI (IA RAG y Agente SQL)
-├── frontend/               # Cliente web React SPA
-├── prisma/                 # Configuración de ORM, migraciones de BD y schema
-├── src/                    # Servicio backend Node.js (User Management)
-├── docker-compose.yml      # Orquestador principal de servicios para desarrollo local
-├── Dockerfile              # Dockerfile para el backend Node.js
-├── package.json            # Dependencias del servicio Node.js (raíz)
-└── README.md               # Documentación general y arquitectura del proyecto
+├── .ai/                    # Development Harness: Context, specs, guidelines for AI agents
+├── ai-service/             # Python/FastAPI backend service (AI RAG and SQL Agent)
+├── frontend/               # React SPA web client
+├── prisma/                 # ORM configuration, DB migrations, and schema
+├── src/                    # Node.js backend service (User Management)
+├── docker-compose.yml      # Main service orchestrator for local development
+├── Dockerfile              # Dockerfile for the Node.js backend
+├── package.json            # Node.js service dependencies (root)
+└── README.md               # General documentation and project architecture
 ```
 
-## Propósito de Carpetas y Archivos Importantes
+## Purpose of Important Folders and Files
 
-### `/src` (Backend Node.js)
-Ubicación de lógica de negocio, controladores y base de datos para la gestión de usuarios y pagos.
-- `/src/index.ts`: Punto de entrada, configuración de Express, middlewares y Socket.IO.
-- `/src/config/`: Archivos de configuración general.
-- `/src/controllers/`: Controladores de los endpoints HTTP. Reciben peticiones y delegan en servicios.
-- `/src/services/`: **Ubicación de la lógica de negocio.**
-  - `/src/services/repositories/`: Capa de acceso a datos (Patrón Repositorio). Implementaciones concretas de interfaces de Prisma.
-- `/src/models/`: Interfaces TypeScript y contratos de repositorios.
-- `/src/routes/`: Definición de rutas Express.
+### `/src` (Node.js Backend)
+Location of business logic, controllers, and database access for managing users and payments.
+- `/src/index.ts`: Entry point, Express configuration, middlewares, and Socket.IO.
+- `/src/config/`: General configuration files.
+- `/src/controllers/`: HTTP endpoint controllers. They receive requests and delegate to services.
+- `/src/services/`: **Location of business logic.**
+  - `/src/services/repositories/`: Data access layer (Repository Pattern). Concrete Prisma implementations of interfaces.
+- `/src/models/`: TypeScript interfaces and repository contracts.
+- `/src/routes/`: Express route definitions.
 
-### `/frontend` (Cliente React)
-Interfaz de usuario de la plataforma.
-- `/frontend/src/main.tsx`: Punto de entrada React.
-- `/frontend/src/App.tsx`: Enrutador principal y layouts.
-- `/frontend/src/components/`: Componentes visuales reutilizables.
-- `/frontend/src/pages/`: Vistas completas de la aplicación (Login, Dashboard, UsersTable, etc.).
-- `/frontend/src/store/`: Manejo de estado global (Zustand para Auth, RTK Query para API requests).
-- `/frontend/src/api/`: Instancias de Axios y clientes de Socket.IO.
-- `/frontend/src/config/`: Configuraciones de Keycloak (`keycloak-js`).
+### `/frontend` (React Client)
+User interface of the platform.
+- `/frontend/src/main.tsx`: React entry point.
+- `/frontend/src/App.tsx`: Main router and layouts.
+- `/frontend/src/components/`: Reusable UI components.
+- `/frontend/src/pages/`: Complete application views (Login, Dashboard, UsersTable, etc.).
+- `/frontend/src/store/`: Global state management (Zustand for Auth, RTK Query for API requests).
+- `/frontend/src/api/`: Axios instances and Socket.IO clients.
+- `/frontend/src/config/`: Keycloak configurations (`keycloak-js`).
 
-### `/ai-service` (Servicio Python IA)
-- `/ai-service/src/main.py`: Punto de entrada FastAPI, endpoints RAG y Agente SQL.
-- `/ai-service/docs/`: Documentos de texto plano (como Términos y Condiciones) para alimentar el RAG.
-- `/ai-service/requirements.txt`: Dependencias de Python.
+### `/ai-service` (Python AI Service)
+- `/ai-service/src/main.py`: FastAPI entry point, RAG endpoints, and SQL Agent.
+- `/ai-service/docs/`: Plain text documents (such as Terms and Conditions) to feed the RAG.
+- `/ai-service/requirements.txt`: Python dependencies.
 
 ### `/prisma`
-- `/prisma/schema.prisma`: Fuente única de verdad de los modelos de base de datos de la aplicación (excepto Keycloak).
-- `/prisma/migrations/`: Historial de migraciones.
+- `/prisma/schema.prisma`: Single source of truth for the application database models (excluding Keycloak).
+- `/prisma/migrations/`: Migration history.
 
-## Archivos que NO deben modificarse sin cuidado
-- `prisma/schema.prisma`: Cualquier cambio requiere generar una nueva migración y puede romper el backend y el Agente SQL.
-- Archivos de configuración de Keycloak: Su alteración puede romper todo el flujo de autenticación de la plataforma.
-- Configuración de RAG y System Prompts en `/ai-service/src/main.py`: Cambios imprevistos pueden causar alucinaciones en el modelo de lenguaje.
+## Files That Should NOT Be Modified Carelessly
+- `prisma/schema.prisma`: Any changes require generating a new migration and can break the backend and the SQL Agent.
+- Keycloak configuration files: Altering these can break the authentication flow of the entire platform.
+- RAG configuration and System Prompts in `/ai-service/src/main.py`: Unexpected changes can cause hallucinations in the language model.
